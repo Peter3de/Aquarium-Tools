@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reef Coral Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eaf6f8;--sf:#fff;--tx:#0b2540;--mu:#51708f;--ac:#d6226f;--ln:#c4dce3;--art:#0a1d38;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#08162b;--sf:#0f2444;--tx:#e6f1ff;--mu:#8fa8c7;--ac:#ff6fae;--ln:#1d3a63;--art:#050f20;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#08162b;--sf:#0f2444;--tx:#e6f1ff;--mu:#8fa8c7;--ac:#ff6fae;--ln:#1d3a63;--art:#050f20;color-scheme:dark}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.5 Figtree,system-ui,sans-serif;min-height:100%}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);padding:14px 16px 10px;border-bottom:1px solid var(--ln)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+h1{font:800 26px/1.1 "Bricolage Grotesque",Figtree,sans-serif;margin:0 0 10px;letter-spacing:-.01em}
+h1 span{color:var(--ac)}
+input[type=search]{width:100%;padding:11px 14px;border-radius:12px;border:1px solid var(--ln);background:var(--sf);color:var(--tx);font:inherit}
+input:focus-visible,button:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}
+.chip{flex:none;border:1px solid var(--ln);background:var(--sf);color:var(--tx);border-radius:99px;padding:6px 14px;font:600 14px Figtree,sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ac);border-color:var(--ac);color:#fff}
+main{max-width:900px;margin:0 auto;padding:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;overflow:hidden;padding:0;text-align:left;color:var(--tx);cursor:pointer;font:inherit;display:block;width:100%}
+.card svg{display:block;width:100%;height:auto;background:var(--art)}
+.card .t{padding:9px 11px 11px}
+.card b{font:600 15px/1.25 "Bricolage Grotesque",Figtree,sans-serif;display:block}
+.card i{font-size:12.5px;color:var(--mu)}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;border:1px solid var(--ln);margin-top:6px;color:var(--mu)}
+.empty{color:var(--mu);text-align:center;padding:40px 0}
+dialog{width:min(560px,100%);max-height:92%;margin:auto auto 0;border:0;border-radius:20px 20px 0 0;padding:0;background:var(--sf);color:var(--tx);overflow:auto}
+@media(min-width:640px){dialog{margin:auto;border-radius:20px}}
+dialog::backdrop{background:rgba(2,10,24,.6)}
+dialog svg{display:block;width:100%;height:auto;background:var(--art)}
+.in{padding:16px 18px 24px}
+.in h2{font:800 24px/1.15 "Bricolage Grotesque",Figtree,sans-serif;margin:0}
+.in .sci{color:var(--mu);font-style:italic;margin:2px 0 12px}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0 0 14px}
+dt{color:var(--mu);font-weight:600}dd{margin:0}
+.tip{border-left:4px solid var(--ac);padding:2px 0 2px 12px;margin:0 0 16px}
+.row{display:flex;gap:10px}
+.btn{flex:1;padding:11px;border-radius:12px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);font:600 15px Figtree,sans-serif;cursor:pointer}
+.btn.p{background:var(--ac);border-color:var(--ac);color:#fff}
+.cph{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--art)}.pho{display:flex;gap:8px;margin:0 0 12px}.pho .btn{padding:8px 10px;font-size:14px}.pho input{display:none}
+.wrap{position:relative}.own{position:absolute;top:8px;right:8px;z-index:1;display:flex;padding:6px;border-radius:10px;border:1px solid var(--ln);background:var(--sf);cursor:pointer}.own input,.ownrow input{width:22px;height:22px;margin:0;accent-color:var(--ac);cursor:pointer}.ownrow{display:flex;gap:10px;align-items:center;margin:0 0 14px;font-weight:600;cursor:pointer}
+.ph p.cn{color:var(--tx);font-size:14px;margin:0 0 12px}.cp{margin:0 0 12px}.cp b{display:block}.cp span{color:var(--mu);font-size:13px}.cp div{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.cp em{font-style:normal;font-size:13px;padding:3px 10px;border-radius:99px;border:1px solid var(--ln)}.cp em.o{border-color:var(--ac);color:var(--ac);font-weight:600}
+[hidden]{display:none!important}.lt{background:var(--sf);border:1px solid var(--ln);border-radius:14px;margin:0 0 14px}.lt summary{padding:12px 14px;cursor:pointer;font-weight:600}.lt summary span{color:var(--ac)}.lb{padding:0 14px 14px;display:grid;gap:10px}.lb label{display:grid;gap:4px;font-weight:600;font-size:14px}.lb select,.lb input[type=number]{padding:9px 10px;border-radius:10px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);font:inherit}.lb input[type=range]{accent-color:var(--ac)}.lb p{margin:0;color:var(--mu);font-size:13px}.lb select:focus-visible,.lb input:focus-visible,.lt summary:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.dm{display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(72px,24vw,150px),1fr));gap:10px}.dm label{min-width:0;font-size:13px}.dm input,.lb select{width:100%;min-width:0;box-sizing:border-box}.dm input[type=number]{-moz-appearance:textfield;appearance:textfield;text-align:center;padding-left:6px;padding-right:6px}.dm input::-webkit-outer-spin-button,.dm input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.lb select{text-overflow:ellipsis}
+#lchart{color:var(--tx)}#lchart svg{width:100%;height:auto;display:block}.ch{font-weight:600;margin:4px 0 6px}.lg{display:grid;gap:4px;font-size:13px;margin-top:8px}.lg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}#lchart p{margin:8px 0 0;color:var(--mu);font-size:13px}
+.lb textarea{width:100%;padding:9px 10px;border-radius:10px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);font:12px/1.4 ui-monospace,monospace;resize:vertical}.lb .row .btn{min-width:0}
+.ph{margin:0 0 16px}.ph h3{font:800 17px "Bricolage Grotesque",Figtree,sans-serif;margin:0 0 6px}.ph .w{overflow-x:auto}.ph table{width:100%;border-collapse:collapse;font-size:14px}.ph th,.ph td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--ln)}.ph th{color:var(--mu);font-weight:600}.ph td:nth-child(2){font-weight:600}.ph p{color:var(--mu);font-size:13px;margin:8px 0 0}
+footer{color:var(--mu);font-size:13px;text-align:center;padding:24px 16px 32px}
+@media(prefers-reduced-motion:no-preference){dialog[open]{animation:up .25s ease-out}@keyframes up{from{transform:translateY(24px);opacity:0}}}
+</style>
+</head>
+<body>
+<header>
+<h1>Reef <span>Coral</span> Guide</h1>
+<input id="q" type="search" placeholder="Search corals" aria-label="Search corals">
+<div class="chips" id="chips" role="group" aria-label="Filter"></div><a class="chip" data-x href="reef-water-tracker.html" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;text-decoration:none;color:var(--ac);border-color:var(--ac)">Reef Water Tracker →</a>
+</header>
+<main><details class="lt" id="ltd"><summary>My lighting: <span id="lsum">None selected</span></summary><div class="lb"><label>Light<select id="ls"></select></label><label id="lnw">Number of lights<select id="ln"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label><label id="lpw">Intensity <span id="lv">100%</span><input id="lp" type="range" min="10" max="150" step="5" value="100"></label><label id="lw" hidden>Surface PAR from your meter (µmol/m²/s)<input id="lm" type="number" min="10" max="1500" value="300"></label><label>Tank size<select id="lts"></select></label><div class="dm"><label>Length (cm)<input id="ll" type="number" min="20" max="300"></label><label>Width (cm)<input id="lwd" type="number" min="20" max="200"></label><label>Depth (cm)<input id="lc" type="number" min="20" max="120"></label></div><p id="lnote"></p><p id="lh"></p><button type="button" class="btn" id="lrec" hidden>Set number of lights to recommended</button><div id="lchart"></div><p>Surface PAR for each light is a rough estimate for one fixture at 100%. Settings above 100% only apply to lights that allow overdrive. Extra fixtures are assumed to add about half their output where beams overlap, and they also widen the lit area. Recommended light counts use rough coverage estimates for each fixture. Height, lens, tank size and settings change it a lot, so use a PAR meter if you can and choose Custom.</p></div></details><details class="lt" id="dat"><summary>My saved data</summary><div class="lb"><p id="dst">Your selections save automatically on this device.</p><div class="row"><button type="button" class="btn p" id="dsv">Save now</button><button type="button" class="btn" id="dcp">Copy backup</button></div><div class="row"><button type="button" class="btn" id="ddl">Download backup file</button><button type="button" class="btn" id="drs">Restore backup</button></div><div><p>Firefox cannot save to a file automatically. If it clears its data when it closes, press this to download a copy of the app with your selections built in, then replace your index.html with it. You can also stop Firefox clearing data under Settings > Privacy &amp; Security > Cookies and Site Data (untick Delete cookies and site data when Firefox is closed).</p><button type="button" class="btn" id="dem">Download app with my selections</button></div><div id="dfr"><p>On a computer, Chrome and Edge can save automatically to a file you choose. This keeps your data even if the browser clears its storage. Create a file once, then use Open save file next time.</p><div class="row"><button type="button" class="btn" id="dfc">Create save file</button><button type="button" class="btn" id="dfo">Open save file</button></div></div><button type="button" class="btn" id="dre" hidden>Reconnect save file</button><textarea id="dtx" rows="3" placeholder="A backup code appears here. To restore, paste a backup code here and press Restore backup, or press Restore backup to choose a file." aria-label="Backup code"></textarea><input type="file" id="dfl" accept="application/json,.json" hidden><p>Saved: owned corals, saved corals, your light, number of lights, intensity and tank size.</p></div></details><div class="grid" id="grid"></div><div class="empty" id="empty" hidden>No corals match. Try another search or filter.</div></main>
+<footer>Illustrations are stylised placeholders, not photographs. Add your own photo to any coral from its details; photos stay in this browser. Care notes are general guidance for typical reef tanks.</footer>
+<dialog id="dlg"></dialog>
+<script type="application/json" id="emb"></script>
+<script>
+// name, scientific, group, form, color1, color2, care, light, flow, feeding, behaviour, placement, tip
+var C=[
+["Green star polyps","Briareum / Pachyclavularia","Soft","mat","#19c37d","#c8ff5a","Beginner","Low–Medium","Medium","Photosynthetic; optional fine foods","Peaceful, but spreads fast","Rockwork or a frag plug on its own island","Grows over anything it touches. Give it a bare rock to encrust."],
+["Zoanthids","Zoanthus / Palythoa","Soft","mat","#ff7a1a","#2ee6d6","Beginner","Medium","Low–Medium","Photosynthetic; occasional meaty foods","Semi-aggressive; some Palythoa are toxic","Mid to low rockwork, away from other coral","Never touch Palythoa with cuts on your hands. Wear gloves when handling."],
+["Mushroom coral","Discosoma / Rhodactis","Soft","mush","#7a3cff","#ff4fa3","Beginner","Low","Low","Photosynthetic; accepts small foods","Peaceful; can reproduce quickly","Low-flow shaded spots on the rockwork","Fading colour usually means too much light. Move it lower."],
+["Toadstool leather","Sarcophyton","Soft","leather","#c9a26b","#f2e2b5","Beginner","Medium","Medium","Photosynthetic","Releases chemicals; keep space around it","Mid to upper rockwork","It sheds a waxy film every few weeks. This is normal."],
+["Kenya tree","Capnella","Soft","tree","#d7a98c","#ffd9bf","Beginner","Low–Medium","Medium–High","Photosynthetic","Peaceful; drops branches that root","Anywhere with good flow","Easy to share: a dropped branch can be glued to a plug."],
+["Xenia","Xenia / Anthelia","Soft","tent","#e8e0ff","#9fb5ff","Intermediate","Medium","Medium","Photosynthetic","Peaceful, but can overrun a tank","Isolated rock or its own corner","Pulsing is a fun feature. Keep it contained."],
+["Hammer coral","Euphyllia ancora","LPS","tent","#2fe0b8","#ffe14a","Beginner","Medium","Medium","Photosynthetic; feed meaty foods weekly","Sweeper tentacles sting neighbours","Sandbed or low rock with 8 cm spacing","Move it carefully by the base. Handling the tentacles can tear them."],
+["Torch coral","Euphyllia glabrescens","LPS","tent","#7cff6e","#ff9de0","Intermediate","Medium","Medium","Photosynthetic; target feed weekly","Aggressive sweeper tentacles","Sandbed or low rock, away from others","Use extra spacing; Euphyllia species sting one another."],
+["Frogspawn","Euphyllia divisa","LPS","bubble","#47d7ff","#d0ff5e","Beginner","Medium","Medium","Photosynthetic; occasional meaty foods","Aggressive; long sweepers","Mid rockwork or sandbed","Tentacles retracting often points to poor water quality."],
+["Acan lord","Acanthastrea lordhowensis","LPS","brain","#ff3d4f","#31d9ff","Beginner","Low–Medium","Low–Medium","Photosynthetic; likes target feeding","Semi-aggressive","Lower rockwork or sandbed","Acans love food. Target feed twice a week for best colour."],
+["Duncan coral","Duncanopsammia axifuga","LPS","tent","#c8b3ff","#fff3a8","Beginner","Low–Medium","Low–Medium","Needs regular feeding","Peaceful","Mid rockwork, low flow","Feed with mysis or similar so polyps stay full."],
+["Bubble coral","Plerogyra sinuosa","LPS","bubble","#9dffd0","#ffffff","Intermediate","Low–Medium","Low","Photosynthetic; occasional foods","Semi-aggressive sweepers at night","Low rock or sandbed, gentle flow","Never place in strong flow. The bubbles tear easily."],
+["Candy cane","Caulastrea furcata","LPS","tent","#32e6a8","#ff7ab8","Beginner","Medium","Medium","Photosynthetic; feed lightly","Peaceful","Mid rockwork","Forgiving and hardy, a good first stony coral."],
+["Blastomussa","Blastomussa wellsi","LPS","brain","#ff5eb0","#47e8ff","Beginner","Low–Medium","Low–Medium","Photosynthetic; accepts small foods","Peaceful","Shaded, low rock","Colourful in dimmer parts of the tank."],
+["Lobophyllia","Lobophyllia hemprichii","LPS","brain","#ff8a2b","#27d98c","Beginner","Low–Medium","Low","Photosynthetic; target feed regularly","Semi-aggressive; large flesh","Sandbed or low rock","Heavy; support its weight so it cannot topple onto neighbours."],
+["Acropora (table/tenuis)","Acropora tenuis","SPS","branch","#ff4fa8","#3be0ff","Advanced","High","High","Photosynthetic; takes fine foods","Semi-aggressive","Upper rockwork, strong random flow","Needs stable alkalinity, calcium and magnesium. Test regularly."],
+["Montipora capricornis","Montipora capricornis","SPS","plate","#a24bff","#4dffb0","Intermediate","Medium–High","Medium–High","Photosynthetic","Peaceful","Mid to upper rock; allow room to spread","A good first SPS. Plate edges show growth as a bright rim."],
+["Pink stylophora","Stylophora pistillata","SPS","branch","#ff7ec0","#ffe3f2","Intermediate","High","High","Photosynthetic","Peaceful","Upper rockwork","Stable parameters matter more than anything else."],
+["Birdsnest","Seriatopora hystrix","SPS","branch","#ffd24a","#ff4fa0","Intermediate","Medium–High","Medium–High","Photosynthetic","Peaceful","Upper to mid rockwork","The most forgiving branching SPS for stepping up from LPS."],
+["Montipora digitata","Montipora digitata","SPS","branch","#30e0a0","#e9ff6a","Intermediate","Medium–High","Medium–High","Photosynthetic","Peaceful","Upper rockwork","Fast grower. Fragging is simple with a bone cutter."],
+["Goniopora (flowerpot)","Goniopora spp.","LPS","tent","#e8574c","#9dffb0","Advanced","Medium","Low–Medium","Needs frequent target feeding of small foods such as phytoplankton","Semi-aggressive; long polyps sting nearby corals","Sandbed or low rock, gentle flow","Often declines in captivity. Buy only fully open, healthy colonies and feed it regularly. Receding flesh or brown jelly means act quickly."],
+["Sinularia (finger leather)","Sinularia spp.","Soft","leather","#cdb98a","#fff0c0","Beginner","Medium–High","Medium–High","Photosynthetic","Releases chemicals; keep space from neighbours","Mid to upper rockwork","Grows quickly and sheds a waxy film every few weeks, which is normal. Run activated carbon and prune it before it shades other corals."],
+["Clove polyp","Clavularia spp.","Soft","mat","#b48cff","#e9ff6a","Beginner","Low–Medium","Medium","Photosynthetic; accepts fine foods","Peaceful, but spreads over rock","Lower to mid rockwork on its own patch","Spreads as a mat across rock. Keep it away from corals you don’t want covered, and trim runners to control it."]
+];
+var PR={
+Soft:[["Temperature","24–26 °C (75–79 °F)","22–28 °C (72–82 °F)"],["Salinity","1.025–1.026 SG (34–35 ppt)","1.023–1.027 SG"],["pH","8.1–8.3","7.9–8.4"],["Alkalinity","7–9 dKH","6–11 dKH"],["Calcium","400–440 ppm","380–460 ppm"],["Magnesium","1280–1380 ppm","1200–1420 ppm"],["Nitrate","2–10 ppm","0.5–20 ppm"],["Phosphate","0.03–0.1 ppm","0.01–0.2 ppm"]],
+LPS:[["Temperature","24–26 °C (75–79 °F)","23–28 °C (73–82 °F)"],["Salinity","1.025–1.026 SG (34–35 ppt)","1.024–1.027 SG"],["pH","8.1–8.3","8.0–8.4"],["Alkalinity","7–9 dKH","6.5–10 dKH"],["Calcium","400–450 ppm","380–470 ppm"],["Magnesium","1280–1380 ppm","1250–1420 ppm"],["Nitrate","2–10 ppm","1–15 ppm"],["Phosphate","0.03–0.1 ppm","0.02–0.15 ppm"]],
+SPS:[["Temperature","25–26 °C (77–79 °F)","24–27 °C (75–81 °F)"],["Salinity","1.025–1.026 SG (34–35 ppt)","1.024–1.026 SG"],["pH","8.1–8.3","8.0–8.4"],["Alkalinity","7–8.5 dKH","7–9 dKH"],["Calcium","420–450 ppm","400–470 ppm"],["Magnesium","1300–1400 ppm","1280–1420 ppm"],["Nitrate","1–5 ppm","0.5–10 ppm"],["Phosphate","0.01–0.05 ppm","0.005–0.1 ppm"]]};
+function params(g){var t=PR[g],s='<div class="ph"><h3>Water parameters</h3><div class="w"><table><tr><th>Parameter</th><th>Ideal</th><th>Tolerated</th></tr>';
+t.forEach(function(r){s+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>'});
+return s+'</table></div><p>Tolerated ranges are what the coral can survive for short periods, not where to aim. Stability matters more than hitting exact numbers: avoid swings in alkalinity of more than 1 dKH per day, and in temperature of more than 1 °C per day.</p><p><a data-x href="reef-water-tracker.html#'+g.toLowerCase()+'" target="_blank" rel="noopener" style="color:var(--ac);font-weight:600">Check my water against these ranges →</a></p></div>'}
+var PP=[[50,150],[75,200],[40,100],[75,150],[50,150],[75,150],[75,150],[75,150],[75,150],[75,150],[75,150],[50,100],[75,150],[50,100],[75,150],[250,450],[150,300],[200,400],[200,350],[150,300],[75,150],[75,200],[50,150]];
+var LT=[["Kessil A80 Tuna Blue (nano)",230],["Kessil A160WE Tuna Sun",450],["AquaIllumination Prime 16 HD",400],["AquaIllumination Hydra 32",600],["EcoTech Radion XR15 G6",500],["Red Sea ReefLED 90",350],["Orphek Atlantik V4",550],["Fluval Marine 3.0",100],["VIPARSPECTRA 165W (budget)",250],["NICREW / hygger (budget, 30–65W)",130],["Custom: I have a PAR meter",0]];
+var L={i:-1,n:1,pct:100,len:122,wid:61,cm:61,par:300};
+var TK=[["30 × 30 × 30 cm nano cube",30,30,30],["45 × 45 × 45 cm cube",45,45,45],["60 × 45 × 45 cm",60,45,45],["90 × 45 × 45 cm",90,45,45],["120 × 50 × 50 cm",120,50,50],["4 × 2 × 2 ft (122 × 61 × 61 cm)",122,61,61],["5 × 2 × 2 ft (152 × 61 × 61 cm)",152,61,61],["6 × 2 × 2 ft (183 × 61 × 61 cm)",183,61,61],["6 × 3 × 2.5 ft (183 × 91 × 76 cm)",183,91,76],["8 × 3 × 2.5 ft (244 × 91 × 76 cm)",244,91,76]];
+var CV=[[30,30],[50,50],[45,45],[60,60],[60,60],[75,60],[90,60],[120,45],[60,60],[45,30],[0,0]];
+var HT=[[15,20,0],[20,30,0],[20,25,1],[20,30,1],[15,30,0],[20,30,0],[20,30,0],[5,15,0],[25,40,0],[10,20,0]];
+function hnote(){if(L.i<0)return "";if(L.i>=HT.length)return "Mount the light at the same height you used when you measured the PAR.";var h=HT[L.i],a=h[0],b=h[1];return "Recommended mounting height: "+a+"–"+b+" cm ("+Math.round(a*.394)+"–"+Math.round(b*.394)+" in) above the water surface. "+(h[2]?"This follows manufacturer guidance quoted by retailers.":"This is a typical range, so check your light’s manual.")+" Mounting higher spreads the light wider but lowers PAR. The PAR estimates here assume this height."}
+function grid(){var c=CV[L.i];return [Math.max(1,Math.ceil((L.len-5)/c[0])),Math.max(1,Math.ceil((L.wid-5)/c[1]))]}
+function sp(n){return L.i<0?null:L.i==LT.length-1?L.par:LT[L.i][1]*L.pct/100*(1+.5*(n-1))}
+function chart(){var el=document.getElementById("lchart"),n=L.n||1,P=sp(n);
+if(P==null){el.innerHTML="";return}
+var cu=L.i==LT.length-1,W=340,H=290,ml=46,mr=14,mt=12,mb=42,D=L.cm,k=.008,rw=Math.max(150,P*1.08),sx=rw<=250?50:rw<=600?100:rw<=1200?200:500,xm=Math.ceil(rw/sx)*sx;
+var X=function(v){return ml+(W-ml-mr)*Math.min(v,xm)/xm},Y=function(d){return mt+(H-mt-mb)*d/D};
+var B=[[50,150,"Soft and LPS","#2f9e8f"],[150,250,"Montipora and high-light LPS","#d9a21b"],[250,450,"Acropora and SPS","#d6226f"]];
+var o='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Chart of PAR against depth in the tank">';
+B.forEach(function(b){o+='<rect x="'+X(b[0])+'" y="'+Y(0)+'" width="'+(X(b[1])-X(b[0]))+'" height="'+(Y(D)-Y(0))+'" fill="'+b[3]+'" opacity=".2"/>'});
+o+='<rect x="'+ml+'" y="'+mt+'" width="'+(W-ml-mr)+'" height="'+(H-mt-mb)+'" fill="none" stroke="currentColor" opacity=".35"/>';
+for(var v=0;v<=xm;v+=sx)o+='<text x="'+X(v)+'" y="'+(H-mb+14)+'" font-size="10" text-anchor="middle" fill="currentColor">'+v+'</text>';
+var st=D>80?20:10;for(var d=0;d<=D;d+=st)o+='<text x="'+(ml-6)+'" y="'+(Y(d)+3)+'" font-size="10" text-anchor="end" fill="currentColor">'+d+'</text><line x1="'+ml+'" x2="'+(W-mr)+'" y1="'+Y(d)+'" y2="'+Y(d)+'" stroke="currentColor" opacity=".1"/>';
+o+='<text x="'+(ml+(W-ml-mr)/2)+'" y="'+(H-6)+'" font-size="11" text-anchor="middle" fill="currentColor">PAR (µmol/m²/s)</text><text transform="translate(11 '+(mt+(H-mt-mb)/2)+') rotate(-90)" font-size="11" text-anchor="middle" fill="currentColor">Depth below surface (cm)</text>';
+function pl(Pv,dash){var pts=[];for(var j=0;j<=40;j++){var dd=D*j/40;pts.push(X(Pv*Math.exp(-k*dd)).toFixed(1)+","+Y(dd).toFixed(1))}return '<polyline points="'+pts.join(" ")+'" fill="none" stroke="currentColor" stroke-width="'+(dash?1.5:2.5)+'"'+(dash?' stroke-dasharray="5 4" opacity=".6"':'')+'/>'}
+if(n>1&&!cu)o+=pl(sp(1),1);
+o+=pl(P,0);
+[450,250,150,50].forEach(function(v){if(P>v){var dd=Math.log(P/v)/k;if(dd<=D)o+='<circle cx="'+X(v)+'" cy="'+Y(dd)+'" r="3.5" fill="currentColor"/><text x="'+(X(v)>W-mr-44?X(v)-6:X(v)+6)+'" y="'+(Y(dd)+3)+'"'+(X(v)>W-mr-44?' text-anchor="end"':'')+' font-size="10" fill="currentColor">'+Math.round(dd)+' cm</text>'}});
+o+='</svg>';
+var lg='<div class="lg">';B.forEach(function(b){var top=P<=b[1]?0:Math.log(P/b[1])/k,r;if(P<b[0]||top>D)r="not reached in this tank";else r=Math.round(top)+"–"+Math.round(Math.min(D,Math.log(P/b[0])/k))+" cm deep";lg+='<div><i style="background:'+b[3]+'"></i>'+b[2]+" ("+b[0]+"–"+b[1]+" PAR): "+r+"</div>"});lg+="</div>";
+el.innerHTML='<div class="ch">Depth versus PAR</div>'+o+lg+'<p>Surface PAR about '+Math.round(P)+(cu?" (your meter reading)":" with "+n+(n>1?" lights":" light")+" at "+L.pct+"%")+(n>1&&!cu?". The dashed line shows one light.":".")+' Assumes clear water, with light fading about 0.8% per cm.</p>'}
+function tnote(){var v=L.len*L.wid*L.cm/1000*.9,s="Water volume is about "+Math.round(v)+" L ("+Math.round(v*.264)+" US gal), using a flat 10% allowance for rock and sand. It does not account for the water actually displaced by your rock, substrate and equipment. This matches the Reef Water Tracker before any sump.";
+if(L.i>=0&&L.i<LT.length-1){var g=grid(),n=g[0]*g[1],have=L.n||1;s+=" Recommended: "+n+" × "+LT[L.i][0]+" ("+g[0]+" along the length, "+g[1]+" across the width). "+(have<n?"You have "+have+", so some areas will be dimmer.":have>n?"You have "+have+", more than this tank needs. Lower the intensity if corals pale.":"Your number of lights matches.")}return s}
+function pos(i){var r=PP[i],lo=r[0],hi=r[1],k=.008,m,s='<div class="ph"><h3>Position and lighting</h3><dl><dt>PAR needed</dt><dd>'+lo+'–'+hi+' µmol/m²/s</dd>';
+var P0=L.i<0?null:L.i==LT.length-1?L.par:LT[L.i][1]*L.pct/100*(1+.5*((L.n||1)-1));
+if(P0==null){m=(hi<=120?"Lower third of the tank, or shaded rockwork":hi<=250?"Middle of the tank":"Upper third, close to the light")+". Choose your light at the top of the page to get a depth in cm."}
+else{var top=P0<=hi?0:Math.log(P0/hi)/k,bot=Math.log(P0/lo)/k;
+if(P0<lo)m="Too dim for this coral. Your light gives about "+Math.round(P0)+" PAR even at the surface.";
+else if(top>L.cm)m="Too bright for this coral, even at the bottom. Lower the intensity or raise the light.";
+else{bot=Math.min(bot,L.cm);var f=(top+bot)/2/L.cm,z=f<.33?"upper third":f<.66?"middle":"lower third";m=Math.round(top)+"–"+Math.round(bot)+" cm ("+Math.round(top*.394)+"–"+Math.round(bot*.394)+" in) below the surface, in the "+z+" of your tank."}}
+return s+'<dt>Position</dt><dd>'+m+'</dd></dl><p>Acclimate new corals at about half the target PAR for two weeks.</p></div>'}
+var CL="SSSLLSEEEAPEPPAKKKKKALS".split("");
+var N={E:"Sweeper tentacles can reach about 10 cm (4 in) at night, and further for bubble coral. Keep a clear gap from other corals. Colonies of the same species can touch, but different Euphyllia can sting each other.",A:"Acans and Lobophyllia extend sweeper tentacles overnight. Leave a gap of 6–8 cm (2–3 in) from neighbours.",P:"A peaceful coral. It sits happily close to other peaceful corals and most SPS.",K:"SPS need room to grow and strong flow. Keep clear of leathers, sweepers and aggressive LPS.",S:"This coral spreads over rock and neighbours. Give it its own patch of rock with a bare gap around it.",L:"Leathers and tree corals release chemicals into the water. Run activated carbon and keep them away from SPS."};
+var D={EE:10,EA:10,EP:10,EK:10,ES:10,EL:12,AA:8,AP:6,AK:8,AS:6,AL:8,PP:3,PK:4,PS:5,PL:8,KK:5,KS:6,KL:10,SS:6,SL:8,LL:8};
+function compat(i){var a=CL[i],B={close:[],gap:[],far:[]};
+C.forEach(function(c,j){if(j==i)return;var d=D[a+CL[j]]||D[CL[j]+a];B[d<=5?"close":d<=9?"gap":"far"].push([c[0],own[j]])});
+function ls(t,sub,arr){if(!arr.length)return"";return '<div class="cp"><b>'+t+'</b><span>'+sub+'</span><div>'+arr.map(function(x){return '<em'+(x[1]?' class="o"':'')+'>'+x[0]+(x[1]?' ✓':'')+'</em>'}).join("")+'</div></div>'}
+return '<div class="ph"><h3>Neighbours</h3><p class="cn">'+N[a]+'</p>'+ls("Can sit close","3–5 cm (1–2 in) apart",B.close)+ls("Allow a gap","6–9 cm (2–4 in) apart",B.gap)+ls("Keep well apart","10 cm (4 in) or more, or in a separate zone of the tank",B.far)+'<p>A ✓ marks corals you own. Spacing is a general guide. Corals grow, so recheck every few months.</p></div>'}
+function R(s){return function(){s=(s*9301+49297)%233280;return s/233280}}
+function art(f,a,b,seed){
+var r=R(seed*7+3),o='',i,x,y,n;
+o+='<defs><radialGradient id="g'+seed+'" cx="50%" cy="100%" r="90%"><stop offset="0" stop-color="'+a+'" stop-opacity=".25"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs><rect width="200" height="150" fill="url(#g'+seed+')"/>';
+o+='<ellipse cx="100" cy="142" rx="78" ry="9" fill="#2a3f5c"/>';
+if(f=="branch"){
+function br(x,y,an,l,d){if(d>3||l<7)return;var x2=x+Math.sin(an)*l,y2=y-Math.cos(an)*l;
+o+='<line x1="'+x+'" y1="'+y+'" x2="'+x2+'" y2="'+y2+'" stroke="'+a+'" stroke-width="'+(7-d*1.6)+'" stroke-linecap="round"/>';
+if(d>=2)o+='<circle cx="'+x2+'" cy="'+y2+'" r="2.6" fill="'+b+'"/>';
+br(x2,y2,an-.5-r()*.3,l*.74,d+1);br(x2,y2,an+.5+r()*.3,l*.74,d+1);if(r()>.5)br(x2,y2,an+(r()-.5)*.3,l*.7,d+1)}
+for(i=0;i<4;i++)br(60+i*26,140,(i-1.5)*.28,34,0)
+}else if(f=="plate"){
+for(i=0;i<4;i++){o+='<ellipse cx="100" cy="'+(112-i*17)+'" rx="'+(68-i*13)+'" ry="'+(20-i*3)+'" fill="'+(i%2?b:a)+'" opacity="'+(.95-i*.12)+'"/><ellipse cx="100" cy="'+(112-i*17)+'" rx="'+(68-i*13)+'" ry="'+(20-i*3)+'" fill="none" stroke="'+b+'" stroke-width="2"/>'}
+o+='<rect x="92" y="118" width="16" height="24" fill="'+a+'"/>'
+}else if(f=="tent"){
+o+='<ellipse cx="100" cy="124" rx="36" ry="12" fill="'+a+'" opacity=".5"/>';
+for(i=0;i<34;i++){x=64+r()*72;var an=(x-100)/70,len=50+r()*40;
+var ex=x+an*len*.5+(r()-.5)*16,ey=124-len*(.7+r()*.3)*.8;
+o+='<path d="M'+x+' 126 Q'+(x+an*10)+' '+(126-len*.5)+' '+ex+' '+ey+'" stroke="'+a+'" stroke-width="3.2" fill="none" stroke-linecap="round"/><circle cx="'+ex+'" cy="'+ey+'" r="3.6" fill="'+b+'"/>'}
+}else if(f=="mat"){
+for(i=0;i<30;i++){x=18+r()*164;y=60+r()*74;n=7+r()*6;
+o+='<ellipse cx="'+x+'" cy="'+y+'" rx="'+n+'" ry="'+(n*.55)+'" fill="'+a+'"/><ellipse cx="'+x+'" cy="'+y+'" rx="'+(n*.45)+'" ry="'+(n*.26)+'" fill="'+b+'"/>'}
+}else if(f=="mush"){
+o+='<ellipse cx="100" cy="100" rx="64" ry="34" fill="'+a+'"/>';
+for(i=0;i<5;i++)o+='<ellipse cx="100" cy="100" rx="'+(60-i*11)+'" ry="'+(31-i*6)+'" fill="none" stroke="'+(i%2?a:b)+'" stroke-width="4" stroke-dasharray="3 5"/>';
+o+='<ellipse cx="100" cy="100" rx="9" ry="5" fill="'+b+'"/>'
+}else if(f=="bubble"){
+for(i=0;i<22;i++){x=34+r()*132;y=70+r()*58;n=12+r()*12;
+o+='<circle cx="'+x+'" cy="'+y+'" r="'+n+'" fill="'+a+'" opacity=".78"/><circle cx="'+(x-n*.3)+'" cy="'+(y-n*.3)+'" r="'+(n*.3)+'" fill="'+b+'" opacity=".85"/>'}
+}else if(f=="brain"){
+o+='<ellipse cx="100" cy="100" rx="70" ry="38" fill="'+a+'"/>';
+for(i=0;i<6;i++){o+='<ellipse cx="'+(100+(r()-.5)*24)+'" cy="'+(100+(r()-.5)*10)+'" rx="'+(64-i*10)+'" ry="'+(34-i*5)+'" fill="none" stroke="'+(i%2?a:b)+'" stroke-width="5" opacity=".9"/>'}
+}else if(f=="leather"){
+o+='<rect x="92" y="104" width="16" height="38" fill="'+a+'" opacity=".8"/>';
+o+='<path d="M28 106 Q38 70 70 84 Q84 56 118 76 Q150 60 164 94 Q184 110 156 118 Q100 134 44 120 Q24 118 28 106Z" fill="'+a+'"/>';
+for(i=0;i<46;i++){x=44+r()*112;y=82+r()*30;o+='<circle cx="'+x+'" cy="'+y+'" r="2.4" fill="'+b+'"/>'}
+}else{
+o+='<line x1="100" y1="142" x2="100" y2="94" stroke="'+a+'" stroke-width="10"/>';
+for(i=0;i<5;i++){x=100+(i-2)*26;o+='<line x1="100" y1="100" x2="'+x+'" y2="62" stroke="'+a+'" stroke-width="6"/><ellipse cx="'+x+'" cy="'+(58+r()*6)+'" rx="22" ry="12" fill="'+b+'"/><ellipse cx="'+x+'" cy="'+(58+r()*6)+'" rx="14" ry="7" fill="'+a+'" opacity=".5"/>'}
+}
+return '<svg viewBox="0 0 200 150" role="img" aria-label="Illustration of '+f+' coral growth form" xmlns="http://www.w3.org/2000/svg">'+o+'</svg>'
+}
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-x]");if(a&&window.top===window.self)a.removeAttribute("target")},true);var PH={};try{PH=JSON.parse(localStorage.getItem("cph")||"{}")}catch(e){}function phSave(){try{localStorage.setItem("cph",JSON.stringify(PH));return 1}catch(e){return 0}}function pic(c,i){return PH[c[0]]?'<img class="cph" alt="Your photo of '+c[0]+'" src="'+PH[c[0]]+'">':art(c[3],c[4],c[5],i+1)}var fav={},own={},grp=(function(){var h=location.hash.slice(1).toLowerCase();return h=="soft"?"Soft":h=="lps"?"LPS":h=="sps"?"SPS":"All"})(),term="";
+try{fav=JSON.parse(localStorage.getItem("fav")||"{}")}catch(e){}
+try{own=JSON.parse(localStorage.getItem("own")||"{}")}catch(e){}
+var PDB=null,UI=null,FH=null,RH=null,FQ=Promise.resolve(),SS={ls:0};
+function pdb(){if(!PDB)PDB=new Promise(function(res,rej){try{var r=indexedDB.open('coralprefs',1);r.onupgradeneeded=function(){r.result.createObjectStore('s')};r.onsuccess=function(){res(r.result)};r.onerror=function(){rej(r.error)}}catch(e){rej(e)}});return PDB}
+function pput(v,k){return pdb().then(function(d){return new Promise(function(res,rej){var t=d.transaction('s','readwrite');t.objectStore('s').put(v,k||'data');t.oncomplete=res;t.onerror=function(){rej(t.error)}})})}
+function pget(k){return pdb().then(function(d){return new Promise(function(res,rej){var q=d.transaction('s').objectStore('s').get(k||'data');q.onsuccess=function(){res(q.result)};q.onerror=function(){rej(q.error)}})})}
+function msg(t){var e=document.getElementById('dst');if(e)e.textContent=t}
+function stat(){var s=SS,p=['Browser storage: '+(s.ls?'working':'blocked')];if(s.db!==undefined)p.push('database: '+(s.db?'working':'blocked'));if(FH)p.push('save file: '+(s.fl?'saved':'not saved'));
+msg('Saved at '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'. '+p.join(', ')+'.'+(!s.ls&&!s.db&&!(FH&&s.fl)?' Your browser is not keeping data, so use a save file or Copy backup.':''))}
+function snap(){return {v:1,t:Date.now(),fav:fav,own:own,L:L}}
+function fwrite(d){if(!FH)return;var h=FH;FQ=FQ.then(function(){return h.createWritable()}).then(function(w){return w.write(JSON.stringify(d)).then(function(){return w.close()})}).then(function(){SS.fl=1;stat()},function(){SS.fl=0;stat()})}
+function persist(){var d=snap();SS.ls=0;try{localStorage.setItem('fav',JSON.stringify(fav));localStorage.setItem('own',JSON.stringify(own));localStorage.setItem('lt',JSON.stringify(L));localStorage.setItem('reefdata',JSON.stringify(d));SS.ls=1}catch(e){}
+try{pput(d).then(function(){SS.db=1;stat()}).catch(function(){SS.db=0;stat()})}catch(e){SS.db=0}
+fwrite(d);stat();return SS.ls}
+function applyData(d){if(!d||typeof d!=='object')return false;if(d.fav&&typeof d.fav==='object')fav=d.fav;if(d.own&&typeof d.own==='object')own=d.own;if(d.L&&typeof d.L.i==='number'){L=d.L;L.len=L.len||122;L.wid=L.wid||61;L.n=L.n||1}return true}
+function fread(h){return h.getFile().then(function(f){return f.text()}).then(function(t){try{return JSON.parse(t)}catch(e){return null}})}
+function link(h,load,force){FH=h;pput(h,'fh').catch(function(){});var ls=null;try{ls=JSON.parse(localStorage.getItem('reefdata')||'null')}catch(e){}
+var p=load?fread(h).then(function(d){if(d&&d.L&&d.fav&&(force||!ls||d.t>=ls.t)){applyData(d);chips();draw();if(UI)UI()}}).catch(function(){}):Promise.resolve();
+return p.then(function(){persist()})}
+function loadP(){var ls=null;try{ls=JSON.parse(localStorage.getItem('reefdata')||'null')}catch(e){}
+try{localStorage.setItem('reeftest','1');localStorage.removeItem('reeftest');SS.ls=1}catch(e){SS.ls=0}
+if(!SS.ls)msg('This browser is not keeping data for this page. Use Create save file or Copy backup.');
+var ed=null;try{ed=JSON.parse(document.getElementById('emb').textContent||'null')}catch(e){}
+var bt=ls?ls.t:0;if(ed&&ed.L&&ed.t>bt){applyData(ed);chips();draw();if(UI)UI();persist();bt=ed.t}
+try{pget().then(function(d){if(d&&d.t>bt){applyData(d);chips();draw();if(UI)UI()}}).catch(function(){})}catch(e){}
+try{pget('fh').then(function(h){if(!h)return;return h.queryPermission({mode:'readwrite'}).then(function(p){if(p==='granted')return link(h,true,false);RH=h;var b=document.getElementById('dre');if(b)b.hidden=false})}).catch(function(){})}catch(e){}
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}}
+function bindData(){var x=document.getElementById('dtx'),fl=document.getElementById('dfl');
+document.getElementById('dem').onclick=function(){try{var c=document.documentElement.cloneNode(true);c.querySelector('#emb').textContent=JSON.stringify(snap()).replace(/</g,'\\u003c');['grid','chips','lchart','dlg','lsum','lnote','lh','ls','lts'].forEach(function(i){var n=c.querySelector('#'+i);if(n)n.innerHTML=''});var st=c.querySelector('#dst');if(st)st.textContent='Your selections save automatically on this device.';c.querySelectorAll('details').forEach(function(d){d.removeAttribute('open')});
+var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['<!DOCTYPE html>\n'+c.outerHTML],{type:'text/html'}));a.download='index.html';document.body.appendChild(a);a.click();a.remove();msg('Downloaded index.html with your selections. Replace your old index.html with it.')}catch(e){msg('Could not create the file.')}};
+if(!window.showSaveFilePicker){var fr=document.getElementById('dfr');if(fr)fr.hidden=true}
+function restore(){try{var d=JSON.parse(x.value);if(!applyData(d))throw 0;persist();chips();draw();if(UI)UI();msg('Backup restored.')}catch(e){msg('That backup code was not recognised.')}}
+document.getElementById('dsv').onclick=function(){persist()};
+document.getElementById('dcp').onclick=function(){var t=JSON.stringify(snap());x.value=t;x.select();try{navigator.clipboard.writeText(t).then(function(){msg('Backup copied. Paste it somewhere safe.')},function(){msg('Select the code in the box and copy it.')})}catch(e){msg('Select the code in the box and copy it.')}};
+document.getElementById('ddl').onclick=function(){var t=JSON.stringify(snap());x.value=t;try{var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'application/json'}));a.download='reef-coral-guide-backup.json';document.body.appendChild(a);a.click();a.remove();msg('Backup file downloaded. If nothing downloaded, copy the code in the box instead.')}catch(e){msg('Copy the code in the box instead.')}};
+document.getElementById('drs').onclick=function(){if(x.value.trim())restore();else fl.click()};
+fl.onchange=function(){var f=fl.files[0];if(!f)return;var r=new FileReader();r.onload=function(){x.value=r.result;restore()};r.readAsText(f)};
+var ty=[{description:'Reef Coral Guide data',accept:{'application/json':['.json']}}];
+document.getElementById('dfc').onclick=function(){window.showSaveFilePicker({suggestedName:'reef-coral-guide-data.json',types:ty}).then(function(h){return link(h,false,true)}).then(function(){msg('Save file linked. Changes now save to it automatically.')}).catch(function(){})};
+document.getElementById('dfo').onclick=function(){window.showOpenFilePicker({types:ty}).then(function(a){return link(a[0],true,true)}).then(function(){msg('Save file loaded. Changes now save to it automatically.')}).catch(function(){})};
+document.getElementById('dre').onclick=function(){if(!RH)return;RH.requestPermission({mode:'readwrite'}).then(function(p){if(p==='granted'){document.getElementById('dre').hidden=true;return link(RH,true,false).then(function(){msg('Save file reconnected.')})}}).catch(function(){})}}
+function save(){persist()}
+function chips(){var el=document.getElementById("chips");el.innerHTML="";
+["All","Owned","Soft","LPS","SPS","Saved"].forEach(function(g){var b=document.createElement("button");b.className="chip";b.textContent=g=="Owned"?"Owned ("+Object.keys(own).length+")":g;b.setAttribute("aria-pressed",g==grp);b.onclick=function(){grp=g;chips();draw()};el.appendChild(b)})}
+function draw(){var g=document.getElementById("grid");g.innerHTML="";var n=0;
+C.forEach(function(c,i){
+if(grp=="Saved"?!fav[i]:grp=="Owned"?!own[i]:(grp!="All"&&c[2]!=grp))return;
+if(term&&(c[0]+" "+c[1]).toLowerCase().indexOf(term)<0)return;n++;
+var b=document.createElement("button");b.className="card";
+b.innerHTML=pic(c,i)+'<div class="t"><b>'+c[0]+(fav[i]?" ★":"")+'</b><i>'+c[1]+'</i><br><span class="pill">'+c[2]+" · "+c[6]+'</span></div>';
+b.onclick=function(){open(i)};
+var w=document.createElement("div");w.className="wrap";w.appendChild(b);
+var l=document.createElement("label");l.className="own";l.title="I own this coral";
+var k=document.createElement("input");k.type="checkbox";k.checked=!!own[i];k.setAttribute("aria-label","I own "+c[0]);
+k.onchange=function(){if(k.checked)own[i]=1;else delete own[i];save();chips();if(grp=="Owned")draw()};
+l.appendChild(k);w.appendChild(l);g.appendChild(w)});
+var em=document.getElementById("empty");em.textContent=grp=="Owned"&&!term?"Tick the box on a coral card to add it to your tank.":"No corals match. Try another search or filter.";em.hidden=n>0}
+function open(i){var c=C[i],d=document.getElementById("dlg");
+d.innerHTML=pic(c,i)+'<div class="in"><div class="pho"><button type="button" class="btn" id="pa">'+(PH[c[0]]?"Change my photo":"Add my photo")+'</button>'+(PH[c[0]]?'<button type="button" class="btn" id="pd">Remove photo</button>':"")+'<input type="file" id="pf" accept="image/*"></div><h2>'+c[0]+'</h2><div class="sci">'+c[1]+'</div><dl><dt>Type</dt><dd>'+({Soft:"Soft coral",LPS:"Large polyp stony (LPS)",SPS:"Small polyp stony (SPS)"})[c[2]]+'</dd><dt>Care level</dt><dd>'+c[6]+'</dd><dt>Lighting</dt><dd>'+c[7]+'</dd><dt>Water flow</dt><dd>'+c[8]+'</dd><dt>Feeding</dt><dd>'+c[9]+'</dd><dt>Behaviour</dt><dd>'+c[10]+'</dd><dt>Placement</dt><dd>'+c[11]+'</dd></dl><p class="tip">'+c[12]+'</p>'+pos(i)+compat(i)+params(c[2])+'<label class="ownrow"><input type="checkbox" id="ow"'+(own[i]?" checked":"")+'> I own this coral</label><div class="row"><button class="btn" id="fv">'+(fav[i]?"Remove from saved":"Save coral")+'</button><button class="btn p" id="cl">Close</button></div></div>';
+d.showModal();var pa=document.getElementById("pa"),pf=document.getElementById("pf"),pd=document.getElementById("pd");pa.onclick=function(){pf.click()};if(pd)pd.onclick=function(){delete PH[c[0]];phSave();d.close();draw();open(i)};pf.onchange=function(){var f=pf.files[0];if(!f)return;var fr=new FileReader();fr.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,720/Math.max(im.width,im.height)),w=Math.round(im.width*s),h=Math.round(im.height*s),cv=document.createElement("canvas");cv.width=w;cv.height=h;cv.getContext("2d").drawImage(im,0,0,w,h);var old=PH[c[0]];PH[c[0]]=cv.toDataURL("image/jpeg",.72);if(!phSave()){if(old)PH[c[0]]=old;else delete PH[c[0]];alert("This browser has no room left to store the photo. Remove another photo and try again.");return}d.close();draw();open(i)};im.onerror=function(){alert("That file couldn’t be read as an image.")};im.src=fr.result};fr.readAsDataURL(f)};
+document.getElementById("cl").onclick=function(){d.close()};
+document.getElementById("ow").onchange=function(){if(this.checked)own[i]=1;else delete own[i];save();chips();draw()};
+document.getElementById("fv").onclick=function(){if(fav[i])delete fav[i];else fav[i]=1;save();d.close();draw()}}
+document.getElementById("dlg").addEventListener("click",function(e){if(e.target===this)this.close()});
+document.getElementById("q").addEventListener("input",function(e){term=e.target.value.trim().toLowerCase();draw()});
+chips();draw();
+(function(){try{var s=JSON.parse(localStorage.getItem("lt")||"null");if(s&&typeof s.i=="number"){L=s;L.len=L.len||60;L.wid=L.wid||45;L.n=L.n||1}}catch(e){}
+var sel=document.getElementById("ls"),lp=document.getElementById("lp"),lc=document.getElementById("lc"),lm=document.getElementById("lm"),lw=document.getElementById("lw"),lpw=document.getElementById("lpw"),lv=document.getElementById("lv"),sm=document.getElementById("lsum"),ln=document.getElementById("ln"),lnw=document.getElementById("lnw"),ts=document.getElementById("lts"),ll=document.getElementById("ll"),lwd=document.getElementById("lwd"),nt=document.getElementById("lnote");
+ts.innerHTML='<option value="-1">Custom size</option>'+TK.map(function(x,n){return '<option value="'+n+'">'+x[0]+'</option>'}).join("");
+sel.innerHTML='<option value="-1">Choose your light</option>'+LT.map(function(x,n){return '<option value="'+n+'">'+x[0]+'</option>'}).join("");
+function ui(){sel.value=L.i;lp.value=L.pct;lv.textContent=L.pct+"%";ll.value=L.len;lwd.value=L.wid;lc.value=L.cm;lm.value=L.par;var ti=-1;TK.forEach(function(x,n){if(x[1]==L.len&&x[2]==L.wid&&x[3]==L.cm)ti=n});ts.value=ti;nt.textContent=tnote();document.getElementById("lh").textContent=hnote();var rb=document.getElementById("lrec");rb.hidden=!(L.i>=0&&L.i<LT.length-1&&(L.n||1)!=Math.min(12,grid()[0]*grid()[1]));chart();var cu=L.i==LT.length-1;lw.hidden=!cu;lpw.hidden=cu;lnw.hidden=cu;ln.value=L.n||1;sm.textContent=L.i<0?"None selected":cu?"Custom, "+L.par+" PAR":LT[L.i][0]+((L.n||1)>1?" ×"+L.n:"")+" at "+L.pct+"%"}
+function ch(){L.i=+sel.value;L.pct=+lp.value;if(this===ts&&+ts.value>=0){var q=TK[+ts.value];L.len=q[1];L.wid=q[2];L.cm=q[3]}else{L.len=Math.max(20,+ll.value||60);L.wid=Math.max(20,+lwd.value||45);L.cm=Math.max(20,+lc.value||45)}L.par=Math.max(10,+lm.value||300);L.n=+ln.value||1;persist();ui()}
+document.getElementById("lrec").onclick=function(){var g=grid();ln.value=Math.min(12,g[0]*g[1]);ch()};
+[sel,ln,lp,ts,ll,lwd,lc,lm].forEach(function(e){e.addEventListener("input",ch)});UI=ui;ui()})();
+bindData();loadP();addEventListener("pagehide",persist);document.addEventListener("visibilitychange",function(){if(document.visibilityState=="hidden")persist()});
+</script>
+</body>
+</html>
