@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="author" content="Peter Ede">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How to use Reef Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eaf6f8;--sf:#fff;--tx:#0b2540;--mu:#51708f;--ac:#d6226f;--ln:#c4dce3;--ok:#17703f;--low:#1c5fb0;--high:#b5540a;--bad:#a8281b;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#08162b;--sf:#0f2444;--tx:#e6f1ff;--mu:#8fa8c7;--ac:#ff6fae;--ln:#1d3a63;--ok:#6fd89b;--low:#7db4ff;--high:#ffa45c;--bad:#ff8f80;color-scheme:dark}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.55 Figtree,system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:28px 16px 40px}
+a{color:var(--ac);font-weight:600}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+h1{font:800 32px/1.1 "Bricolage Grotesque",Figtree,sans-serif;margin:10px 0 6px;letter-spacing:-.01em}
+h1 span{color:var(--ac)}
+.sub{color:var(--mu);margin:0 0 22px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.chip{border:1px solid var(--ln);background:var(--sf);border-radius:99px;padding:6px 14px;font-size:14px;text-decoration:none;color:var(--ac)}
+details{background:var(--sf);border:1px solid var(--ln);border-radius:14px;margin:0 0 12px}
+summary{padding:13px 16px;cursor:pointer;font:800 18px "Bricolage Grotesque",Figtree,sans-serif}
+.b{padding:0 16px 14px}
+.b h3{font:800 16px "Bricolage Grotesque",Figtree,sans-serif;margin:16px 0 4px}
+.b p{margin:6px 0}
+.b ul,.b ol{margin:6px 0;padding-left:22px}
+.b li{margin:3px 0}
+.ok{color:var(--ok);font-weight:700}.low{color:var(--low);font-weight:700}.high{color:var(--high);font-weight:700}.ext{color:var(--bad);font-weight:700}
+.note{color:var(--mu);font-size:14px}
+footer{color:var(--mu);font-size:13px;margin-top:24px}
+</style></head><body><main>
+<p><a href="index.html">← Reef Tools</a></p>
+<h1>How to <span>use</span> these tools</h1>
+<p class="sub">Two pages that work together: the Reef Water Tracker checks your test results, and the Reef Coral Guide helps you choose and place corals.</p>
+<div class="nav"><a class="chip" href="#start">Quick start</a><a class="chip" href="#tracker">Water Tracker</a><a class="chip" href="#guide">Coral Guide</a><a class="chip" href="#data">Your data</a></div>
+
+<details id="start" open><summary>Quick start</summary><div class="b"><ol>
+<li>Open the <a href="reef-water-tracker.html">Reef Water Tracker</a> and choose the coral group that matches your tank.</li>
+<li>Check your tank size and type in your latest test results.</li>
+<li>Follow the numbered list under <b>What to do</b>, starting at number 1.</li>
+<li>Select <b>Save to log</b> so the tracker can learn how fast your tank uses calcium, alkalinity and magnesium.</li>
+<li>Use the <a href="reef-coral-guide.html">Reef Coral Guide</a> to see which corals suit your lighting and water.</li></ol></div></details>
+
+<details id="tracker"><summary>Reef Water Tracker</summary><div class="b">
+<h3>1. Choose your coral group</h3>
+<p>Use the chips at the top. <b>Mixed reef</b> uses the narrowest overlap of the Soft, LPS and SPS ranges, so it suits tanks with all three. <b>Soft corals</b>, <b>LPS</b> and <b>SPS</b> use the ranges from the Reef Coral Guide. <b>Fish only</b> is for fish and live rock without corals.</p>
+<h3>2. Enter your tank</h3>
+<ul><li>Pick a <b>Tank size</b> from the list, or type your own Length, Width and Depth in centimetres. The list switches to Custom size if your numbers don’t match a preset.</li>
+<li>Add any <b>sump or extra water</b> in litres.</li>
+<li>If you know your real system volume, type it in <b>total litres</b>. This overrides the size above.</li>
+<li>The working volume is the tank volume less a flat 10% for rock and sand, plus any sump. Dosing amounts are based on it.</li></ul>
+<h3>3. Enter your test results</h3>
+<p>Fill in any readings you have. You don’t need all of them. Set the <b>test date</b>, and choose <b>ppt</b> or <b>SG</b> beside salinity. Changing the unit converts what you’ve typed. The tracker opens with your last saved readings already filled in, so just change the ones you’ve retested.</p>
+<h3>4. Read the status</h3>
+<ul><li><span class="ok">In range</span>: inside the ideal range. Leave it alone.</li>
+<li><span class="low">Low</span> or <span class="high">High</span>: outside ideal but within what the coral tolerates.</li>
+<li><span class="ext">Extremely low</span> or <span class="ext">Extremely high</span>: outside the tolerated range. The box turns red.</li></ul>
+<p class="note">Ideal is where to aim. Tolerated is what corals can survive for short periods.</p>
+<h3>5. Follow “What to do”</h3>
+<p>Problems are listed in priority order: ammonia and nitrite first, then temperature, salinity, magnesium, alkalinity, calcium, pH, nitrate and phosphate. Readings outside the tolerated range come before milder ones. Work from the top, and fix magnesium before calcium and alkalinity, because low magnesium stops them holding.</p>
+<ul><li>Dose amounts are the pure chemical (baking soda for alkalinity, calcium chloride for calcium, magnesium chloride for magnesium). For commercial products, follow the label.</li>
+<li>Large corrections are split over several days. The tracker never suggests raising alkalinity by more than 1 dKH, calcium by more than 20 ppm, or magnesium by more than 50 ppm in a day. Change salinity by no more than 1 ppt (0.001 SG) and temperature by no more than 1 °C per day.</li>
+<li>Retest 24 hours after each dose before dosing again.</li></ul>
+<h3>6. Save to the log</h3>
+<p>Select <b>Save to log</b> to keep the readings. Saving again on the same date replaces that entry. Open <b>My log</b> to see every entry with all ten parameters, and use <b>Delete</b> to remove one. After you have two entries, a <b>How often to dose</b> section estimates daily use and a maintenance dose.</p>
+<p class="note">The estimate assumes you added nothing between tests. If you did dose, real use is higher.</p>
+<h3>Suggested testing</h3>
+<p>Temperature daily. Salinity, alkalinity, calcium and nitrate weekly. Magnesium and phosphate every two weeks. Ammonia and nitrite after any livestock loss or new additions.</p>
+<p>The <b>Coral Guide</b> chip at the top opens the guide filtered to your chosen group.</p>
+</div></details>
+
+<details id="guide"><summary>Reef Coral Guide</summary><div class="b">
+<h3>Find corals</h3>
+<p>Type in the search box to find a coral by name. The chips filter by <b>All</b>, <b>Owned</b>, <b>Soft</b>, <b>LPS</b>, <b>SPS</b> and <b>Saved</b>.</p>
+<h3>Mark what you keep</h3>
+<ul><li>Tick the box in the corner of a card to say <b>I own this coral</b>. The count shows on the Owned chip.</li>
+<li>Open a coral and select <b>Save coral</b> to add it to your Saved list.</li></ul>
+<h3>Open a coral</h3>
+<p>Tap a card to see its type, care level, lighting, flow, feeding, behaviour and placement. It also shows suggested position and light for your setup, which corals can sit close and which need a gap, and its ideal and tolerated water parameters. <b>Check my water against these ranges</b> opens the Water Tracker on that coral’s group.</p>
+<h3>Add your own photo</h3>
+<p>Open a coral and select <b>Add my photo</b>. On a phone you can take a picture or choose one from your library. Your photo replaces the drawing on that coral’s card. Use <b>Change my photo</b> or <b>Remove photo</b> to update it. Photos are shrunk to save space.</p>
+<h3>Set your lighting and tank</h3>
+<p>Open <b>My lighting</b>. Choose your light, the number of lights and the intensity. Pick a <b>Tank size</b> or type the Length, Width and Depth in centimetres. The guide estimates light at different depths so you can place corals where they will get what they need. Choose <b>Custom</b> and enter a reading from a PAR meter for the most accurate result.</p>
+<p class="note">Light estimates are rough. Height, lens, tank size and settings change them a lot.</p>
+</div></details>
+
+<details id="data"><summary>Your data and backups</summary><div class="b">
+<p>Both pages save automatically on the device and browser you used. Nothing is sent anywhere, and there’s no account.</p>
+<ul><li>A different browser or device starts empty.</li>
+<li>Clearing your browser’s site data erases your log, tank settings, photos and selections.</li>
+<li>The Reef Coral Guide has a <b>My saved data</b> section. Use <b>Download backup file</b> or <b>Copy backup</b> to keep a copy of your owned corals, saved corals, lighting and tank size, and <b>Restore backup</b> to bring them back. Photos and the Water Tracker log are not part of that backup.</li>
+<li>On a computer, Chrome and Edge can also save automatically to a file you choose.</li></ul>
+<p class="note">If you rely on your log, take a note of important readings somewhere safe. A spreadsheet works well.</p>
+</div></details>
+
+<footer>General guidance only, not a substitute for advice from an aquatic professional. Retest after every change and adjust slowly.<br>© 2026 Peter Ede</footer>
+</main></body></html>
