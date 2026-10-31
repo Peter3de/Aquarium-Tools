@@ -2,6 +2,10 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="author" content="Peter Ede">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="How to use the Reef Water Tracker and the Reef Coral Guide.">
+<meta name="theme-color" content="#eaf6f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08162b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230b2540'/%3E%3Cg%20stroke='%23ff6fae'%20stroke-width='6'%20stroke-linecap='round'%20fill='none'%3E%3Cpath%20d='M32%2054V30M32%2040L18%2026M32%2036L46%2020M18%2026V16M46%2020V12'/%3E%3C/g%3E%3C/svg%3E">
 <title>How to use Reef Tools</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
@@ -20,6 +24,7 @@ h1 span{color:var(--ac)}
 .chip{border:1px solid var(--ln);background:var(--sf);border-radius:99px;padding:6px 14px;font-size:14px;text-decoration:none;color:var(--ac)}
 details{background:var(--sf);border:1px solid var(--ln);border-radius:14px;margin:0 0 12px}
 summary{padding:13px 16px;cursor:pointer;font:800 18px "Bricolage Grotesque",Figtree,sans-serif}
+summary h2{display:inline;font:inherit;margin:0}
 .b{padding:0 16px 14px}
 .b h3{font:800 16px "Bricolage Grotesque",Figtree,sans-serif;margin:16px 0 4px}
 .b p{margin:6px 0}
@@ -34,14 +39,14 @@ footer{color:var(--mu);font-size:13px;margin-top:24px}
 <p class="sub">Two pages that work together: the Reef Water Tracker checks your test results, and the Reef Coral Guide helps you choose and place corals.</p>
 <div class="nav"><a class="chip" href="#start">Quick start</a><a class="chip" href="#tracker">Water Tracker</a><a class="chip" href="#guide">Coral Guide</a><a class="chip" href="#data">Your data</a></div>
 
-<details id="start" open><summary>Quick start</summary><div class="b"><ol>
+<details id="start" open><summary><h2>Quick start</h2></summary><div class="b"><ol>
 <li>Open the <a href="reef-water-tracker.html">Reef Water Tracker</a> and choose the coral group that matches your tank.</li>
 <li>Check your tank size and type in your latest test results.</li>
 <li>Follow the numbered list under <b>What to do</b>, starting at number 1.</li>
 <li>Select <b>Save to log</b> so the tracker can learn how fast your tank uses calcium, alkalinity and magnesium.</li>
 <li>Use the <a href="reef-coral-guide.html">Reef Coral Guide</a> to see which corals suit your lighting and water.</li></ol></div></details>
 
-<details id="tracker"><summary>Reef Water Tracker</summary><div class="b">
+<details id="tracker"><summary><h2>Reef Water Tracker</h2></summary><div class="b">
 <h3>1. Choose your coral group</h3>
 <p>Use the chips at the top. <b>Mixed reef</b> uses the narrowest overlap of the Soft, LPS and SPS ranges, so it suits tanks with all three. <b>Soft corals</b>, <b>LPS</b> and <b>SPS</b> use the ranges from the Reef Coral Guide. <b>Fish only</b> is for fish and live rock without corals.</p>
 <h3>2. Enter your tank</h3>
@@ -62,19 +67,20 @@ footer{color:var(--mu);font-size:13px;margin-top:24px}
 <li>Large corrections are split over several days. The tracker never suggests raising alkalinity by more than 1 dKH, calcium by more than 20 ppm, or magnesium by more than 50 ppm in a day. Change salinity by no more than 1 ppt (0.001 SG) and temperature by no more than 1 °C per day.</li>
 <li>Retest 24 hours after each dose before dosing again.</li></ul>
 <h3>6. Save to the log</h3>
-<p>Select <b>Save to log</b> to keep the readings. Saving again on the same date replaces that entry. Open <b>My log</b> to see every entry with all ten parameters, and use <b>Delete</b> to remove one. After you have two entries, a <b>How often to dose</b> section estimates daily use and a maintenance dose.</p>
+<p>Select <b>Save to log</b> to keep the readings. Saving again on the same date replaces that entry. Open <b>My log</b> to see every entry with all ten parameters, and use <b>Delete</b> to remove one. Use <b>Download backup</b> there to keep a copy, <b>Restore backup</b> to load it again, or <b>Export CSV</b> to open the log in a spreadsheet. After you have two entries, a <b>How often to dose</b> section estimates daily use and a maintenance dose.</p>
 <p class="note">The estimate assumes you added nothing between tests. If you did dose, real use is higher.</p>
 <h3>Suggested testing</h3>
 <p>Temperature daily. Salinity, alkalinity, calcium and nitrate weekly. Magnesium and phosphate every two weeks. Ammonia and nitrite after any livestock loss or new additions.</p>
 <p>The <b>Coral Guide</b> chip at the top opens the guide filtered to your chosen group.</p>
 </div></details>
 
-<details id="guide"><summary>Reef Coral Guide</summary><div class="b">
+<details id="guide"><summary><h2>Reef Coral Guide</h2></summary><div class="b">
 <h3>Find corals</h3>
 <p>Type in the search box to find a coral by name. The chips filter by <b>All</b>, <b>Owned</b>, <b>Soft</b>, <b>LPS</b>, <b>SPS</b> and <b>Saved</b>.</p>
 <h3>Mark what you keep</h3>
 <ul><li>Tick the box in the corner of a card to say <b>I own this coral</b>. The count shows on the Owned chip.</li>
-<li>Open a coral and select <b>Save coral</b> to add it to your Saved list.</li></ul>
+<li>Open a coral and select <b>Save coral</b> to add it to your Saved list.</li>
+<li>Keep more than one type of the same coral, such as several zoanthid morphs? Open the coral and use <b>My varieties</b> to add each one by name. Adding a variety marks the coral as owned, and your varieties show on its card and in the search box.</li></ul>
 <h3>Open a coral</h3>
 <p>Tap a card to see its type, care level, lighting, flow, feeding, behaviour and placement. It also shows suggested position and light for your setup, which corals can sit close and which need a gap, and its ideal and tolerated water parameters. <b>Check my water against these ranges</b> opens the Water Tracker on that coral’s group.</p>
 <h3>Add your own photo</h3>
@@ -84,13 +90,14 @@ footer{color:var(--mu);font-size:13px;margin-top:24px}
 <p class="note">Light estimates are rough. Height, lens, tank size and settings change them a lot.</p>
 </div></details>
 
-<details id="data"><summary>Your data and backups</summary><div class="b">
-<p>Both pages save automatically on the device and browser you used. Nothing is sent anywhere, and there’s no account.</p>
+<details id="data"><summary><h2>Your data and backups</h2></summary><div class="b">
+<p>Both pages save automatically on the device and browser you used. Nothing you enter is sent anywhere, and there’s no account. The one outside request is the pages loading their typefaces from Google Fonts.</p>
 <ul><li>A different browser or device starts empty.</li>
 <li>Clearing your browser’s site data erases your log, tank settings, photos and selections.</li>
-<li>The Reef Coral Guide has a <b>My saved data</b> section. Use <b>Download backup file</b> or <b>Copy backup</b> to keep a copy of your owned corals, saved corals, lighting and tank size, and <b>Restore backup</b> to bring them back. Photos and the Water Tracker log are not part of that backup.</li>
+<li>The Reef Coral Guide has a <b>My saved data</b> section. Use <b>Download backup file</b> or <b>Copy backup</b> to keep a copy of your owned corals, saved corals, varieties, lighting and tank size, and <b>Restore backup</b> to bring them back. Photos are not part of that backup.</li>
+<li>The Reef Water Tracker log has its own backup. In <b>My log</b>, use <b>Download backup</b> and <b>Restore backup</b>. Restoring replaces any entries with the same date. Tank settings are not included.</li>
 <li>On a computer, Chrome and Edge can also save automatically to a file you choose.</li></ul>
-<p class="note">If you rely on your log, take a note of important readings somewhere safe. A spreadsheet works well.</p>
+<p class="note">If you rely on your log, download a backup now and then. Export CSV gives you a copy you can open in a spreadsheet.</p>
 </div></details>
 
 <footer>General guidance only, not a substitute for advice from an aquatic professional. Retest after every change and adjust slowly.<br>© 2026 Peter Ede</footer>
