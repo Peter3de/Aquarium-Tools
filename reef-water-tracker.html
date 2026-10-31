@@ -84,7 +84,7 @@ footer{color:var(--mu);font-size:13px;text-align:center;padding:24px 16px 32px}
 <label class="mu" style="display:flex;gap:10px;align-items:center;margin:0 0 8px">Test date<input id="dt" type="date" style="width:auto"></label>
 <p class="mu" id="ln" style="margin:0 0 8px"></p>
 <div class="w"><table><tr><th>Parameter</th><th>Your reading</th><th>Ideal</th><th>Tolerated</th><th>Status</th></tr><tbody id="rows"></tbody></table></div>
-<p><span id="gn"></span>Ideal is where to aim. Tolerated is what the coral can survive for short periods, so a reading outside it is flagged as extreme. Stability matters more than hitting exact numbers: avoid swings in alkalinity of more than 1 dKH per day, and in temperature of more than 1 °C per day.</p>
+<p><span id="gn"></span>Ideal is where to aim. Tolerated is what the coral can survive for short periods, so a reading outside it is flagged as very low or very high. Stability matters more than hitting exact numbers: avoid swings in alkalinity of more than 1 dKH per day, and in temperature of more than 1 °C per day.</p>
 <div class="row"><button class="btn p" id="save" type="button">Save to log</button></div></div>
 
 <div class="ph"><h3>What to do, in order of priority</h3><div id="out"></div></div>
@@ -147,7 +147,7 @@ function rec(p,x,s,V,ex){
  else if(k==='po4')m=s==='high'?'Do a 15–20% water change and use phosphate-removing media (GFO) in a reactor. Lower slowly, no faster than about 0.05 ppm per day, to avoid shocking corals.':'Phosphate is low. Feed a little more and ease off GFO, carbon or heavy skimming.';
  else m='Toxic to fish and corals. Do a 25–30% water change now, check for dead livestock or overfeeding, and confirm the biofilter is healthy. Consider an ammonia detoxifier while you fix it.';
  if(k==='nh3'||k==='no2')ex=true;
- return{k,ex,c:ex?'bad':c,t:`${ex?'⚠ ':''}${p.n}: ${fx(x)}${u} <span class="st ${ex?'ext':s}">${ex&&k!=='nh3'&&k!=='no2'?'Extremely ':''}${s==='low'?'Low':'High'}</span> (ideal ${fx(r[0])}–${fx(r[1])})`,m}}
+ return{k,ex,c:ex?'bad':c,t:`${ex?'⚠ ':''}${p.n}: ${fx(x)}${u} <span class="st ${ex?'ext':s}">${ex&&k!=='nh3'&&k!=='no2'?'Very ':''}${s==='low'?'Low':'High'}</span> (ideal ${fx(r[0])}–${fx(r[1])})`,m}}
 
 function maint(k,x,V){
  const dt=$('dt').value,prev=LOG.filter(e=>e.d<dt&&e.v[k]!=null).sort((a,b)=>b.d.localeCompare(a.d))[0];
@@ -165,7 +165,7 @@ function update(){
   if(x==null||isNaN(x)){b.textContent='';b.className='badge';inp.classList.remove('xt');return}
   const s=x<r[0]?'low':x>r[1]?'high':'ok',ex=s!=='ok'&&(x<r[2]||x>r[3]);
   inp.classList.toggle('xt',ex);
-  b.textContent=s==='ok'?'In range':(ex?'Extremely ':'')+(s==='low'?'low':'high');
+  b.textContent=s==='ok'?'In range':(ex?'Very ':'')+(s==='low'?'low':'high');
   b.className='badge '+(s==='ok'?'ok':ex?'ext':s);
   if(s!=='ok'){const o=rec(p,x,s,V,ex);o.sev=(x<r[0]?r[0]-x:x-r[1])/((r[3]-r[2])||1);recs.push(o)}});
  const RK=['nh3','no2','temp','sal','mg','alk','ca','ph','no3','po4'],tier=o=>o.k==='nh3'||o.k==='no2'?0:o.ex?1:2;
