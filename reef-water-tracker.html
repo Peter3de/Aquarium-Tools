@@ -6,9 +6,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eaf6f8;--sf:#fff;--tx:#0b2540;--mu:#51708f;--ac:#d6226f;--ln:#c4dce3;--ok:#17703f;--low:#1c5fb0;--high:#b5540a;--bad:#a8281b;--badbg:#fbe3df;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#08162b;--sf:#0f2444;--tx:#e6f1ff;--mu:#8fa8c7;--ac:#ff6fae;--ln:#1d3a63;--ok:#6fd89b;--low:#7db4ff;--high:#ffa45c;--bad:#ff8f80;--badbg:#401c18;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#08162b;--sf:#0f2444;--tx:#e6f1ff;--mu:#8fa8c7;--ac:#ff6fae;--ln:#1d3a63;--ok:#6fd89b;--low:#7db4ff;--high:#ffa45c;--bad:#ff8f80;--badbg:#401c18;color-scheme:dark}
+:root{--bg:#eaf6f8;--sf:#fff;--tx:#0b2540;--mu:#51708f;--ac:#d6226f;--ln:#c4dce3;--ok:#17703f;--low:#1c5fb0;--high:#b5540a;--bad:#a8281b;--badbg:#fbe3df;--onac:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#08162b;--sf:#0f2444;--tx:#e6f1ff;--mu:#8fa8c7;--ac:#ff6fae;--ln:#1d3a63;--ok:#6fd89b;--low:#7db4ff;--high:#ffa45c;--bad:#ff8f80;--badbg:#401c18;--onac:#08162b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#08162b;--sf:#0f2444;--tx:#e6f1ff;--mu:#8fa8c7;--ac:#ff6fae;--ln:#1d3a63;--ok:#6fd89b;--low:#7db4ff;--high:#ffa45c;--bad:#ff8f80;--badbg:#401c18;--onac:#08162b;color-scheme:dark}
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:border-box}
@@ -19,7 +19,7 @@ h1{font:800 26px/1.1 "Bricolage Grotesque",Figtree,sans-serif;margin:0 0 10px;le
 h1 span{color:var(--ac)}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0;scrollbar-width:none}
 .chip{flex:none;border:1px solid var(--ln);background:var(--sf);color:var(--tx);border-radius:99px;padding:6px 14px;font:600 14px Figtree,sans-serif;cursor:pointer;text-decoration:none}
-.chip[aria-pressed=true]{background:var(--ac);border-color:var(--ac);color:#fff}
+.chip[aria-pressed=true]{background:var(--ac);border-color:var(--ac);color:var(--onac)}
 a.chip{color:var(--ac);border-color:var(--ac)}
 input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 main{max-width:900px;margin:0 auto;padding:16px}
@@ -51,7 +51,7 @@ select,input[type=number],input[type=date]{padding:9px 10px;border-radius:10px;b
 .st{font-weight:700}.st.ext{color:var(--bad)}
 .row{display:flex;gap:10px;margin:12px 0 0}
 .btn{flex:1;padding:11px;border-radius:12px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);font:600 15px Figtree,sans-serif;cursor:pointer}
-.btn.p{background:var(--ac);border-color:var(--ac);color:#fff}
+.btn.p{background:var(--ac);border-color:var(--ac);color:var(--onac)}
 .btn.s{flex:none;padding:3px 10px;font-weight:400;font-size:13px}
 .rec{background:var(--sf);border:1px solid var(--ln);border-left:4px solid var(--ac);border-radius:14px;padding:10px 14px;margin:0 0 10px}
 .rec.bad{border-left-color:var(--bad);background:var(--badbg)}.rec.ok{border-left-color:var(--ok)}
@@ -107,6 +107,9 @@ mixed:{...N,temp:[25,26,24,27],sal:[34,35,s2p(1.024),s2p(1.026)],ph:[8.1,8.3,8,8
 fowlr:{...N,temp:[24,27,23,28],sal:[34,35,s2p(1.023),s2p(1.027)],ph:[8.1,8.4,8,8.5],alk:[7,11,6,12],ca:[380,450,350,480],mg:[1250,1400,1200,1450],no3:[0,20,0,40],po4:[0,.2,0,.5]}};
 const G=[['mixed','Mixed reef'],['soft','Soft corals'],['lps','LPS'],['sps','SPS'],['fowlr','Fish only']];
 const TK=[["30 × 30 × 30 cm nano cube",30,30,30],["45 × 45 × 45 cm cube",45,45,45],["60 × 45 × 45 cm",60,45,45],["90 × 45 × 45 cm",90,45,45],["120 × 50 × 50 cm",120,50,50],["4 × 2 × 2 ft (122 × 61 × 61 cm)",122,61,61],["5 × 2 × 2 ft (152 × 61 × 61 cm)",152,61,61],["6 × 2 × 2 ft (183 × 61 × 61 cm)",183,61,61],["6 × 3 × 2.5 ft (183 × 91 × 76 cm)",183,91,76],["8 × 3 × 2.5 ft (244 × 91 × 76 cm)",244,91,76]];
+// Salinity: in SG the ideal is 1.025–1.026 (as in the guide); in ppt it is 34–35. Tolerated bounds are the same either way.
+const rr=k=>{const r=R[GP][k];return k==='sal'&&SU==='sg'?[s2p(1.025),s2p(1.026),r[2],r[3]]:r};
+const lab=(s,ex)=>ex?'Very '+s:s==='low'?'Low':'High';
 const F={alk:.030,ca:.00367,mg:.00836},M={alk:1,ca:20,mg:50};
 const CH={alk:'sodium bicarbonate (baking soda)',ca:'calcium chloride dihydrate',mg:'magnesium chloride hexahydrate'};
 let D=[122,61,61],LOG=[],SU='ppt',GP='sps';
@@ -121,13 +124,14 @@ const f=g=>g>=1000?(g/1000).toFixed(2)+' kg':g>=10?g.toFixed(0)+' g':g.toFixed(1
 $('chips').innerHTML=G.map(g=>`<button class="chip" type="button" data-g="${g[0]}" aria-pressed="false">${g[1]}</button>`).join('')+'<a class="chip" id="gl" data-x target="_blank" rel="noopener">Coral Guide</a>';
 $('pre').innerHTML='<option value="-1">Custom size</option>'+TK.map((p,i)=>`<option value="${i}">${p[0]}</option>`).join('');
 $('rows').innerHTML=P.map(p=>`<tr><td>${p.n}</td><td>${p.k==='sal'?'<span class="sr"><input type="number" step="0.1" id="i_sal" aria-label="Salinity"><select id="su" aria-label="Salinity unit"><option value="ppt">ppt</option><option value="sg">SG</option></select></span>':`<span class="sr"><input type="number" step="${p.s}" id="i_${p.k}" aria-label="${p.n}">${p.u?'<span class="mu">'+p.u+'</span>':''}</span>`}</td><td id="ri_${p.k}"></td><td id="rt_${p.k}"></td><td><span class="badge" id="b_${p.k}"></span></td></tr>`).join('');
-$('dt').value=new Date().toISOString().slice(0,10);
+const today=()=>{const d=new Date();return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+$('dt').value=today();
 
 function showDims(){['L','W','H'].forEach((id,i)=>$(id).value=D[i])}
 function syncPre(){let t=-1;TK.forEach((x,n)=>{if(x[1]==D[0]&&x[2]==D[1]&&x[3]==D[2])t=n});$('pre').value=t}
 function dimCh(fromPre){if(fromPre&&+$('pre').value>=0){const q=TK[+$('pre').value];D=[q[1],q[2],q[3]];showDims()}else{D=['L','W','H'].map((id,i)=>Math.max(20,+$(id).value||[60,45,45][i]));syncPre()}update()}
 function vol(){const l=parseFloat($('lit').value);if(l>0)return l;return D[0]*D[1]*D[2]/1000*.9+(parseFloat($('sump').value)||0)}
-function ranges(){P.forEach(p=>{const r=R[GP][p.k],z=p.k==='nh3'||p.k==='no2';$('ri_'+p.k).textContent=z?'0':rg(p,r[0],r[1]);$('rt_'+p.k).textContent=z?'under 0.1 ppm':rg(p,r[2],r[3])});
+function ranges(){P.forEach(p=>{const r=rr(p.k),z=p.k==='nh3'||p.k==='no2';$('ri_'+p.k).textContent=z?'0':rg(p,r[0],r[1]);$('rt_'+p.k).textContent=z?'under 0.1 ppm':rg(p,r[2],r[3])});
  document.querySelectorAll('.chip[data-g]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===GP));
  const nf=GP==='fowlr'||GP==='mixed';$('gl').href=GURL+(nf?'':'#'+GP);$('gl').textContent=nf?'Coral Guide':'See '+G.find(g=>g[0]===GP)[1]+' in the Guide';$('gn').textContent=GP==='mixed'?'Mixed reef uses the narrowest overlap of the Soft, LPS and SPS ranges, so every coral group is covered. ':''}
 
@@ -135,7 +139,7 @@ function dose(k,d,V){const days=Math.max(1,Math.ceil(d/M[k]-1e-9)),tot=d*V*F[k];
 function split(k,d,V,u){const o=dose(k,d,V);return `Raise by ${d.toFixed(k==='alk'?1:0)} ${u}. Dissolve about ${f(o.tot)} of ${CH[k]} in total, added over ${o.days} day${o.days>1?'s':''} (${f(o.per)} per day, never more than +${M[k]} ${u} per day). Retest 24 hours after each dose.`}
 
 function rec(p,x,s,V,ex){
- const k=p.k,r=R[GP][k],id=(r[0]+r[1])/2;let c='ac',m='';
+ const k=p.k,r=rr(k),id=(r[0]+r[1])/2,vx=ex;let c='ac',m='';
  const fx=v=>k==='sal'?sf(v):v,u=k==='sal'?(SU==='sg'?' SG':' ppt'):(p.u?' '+p.u:'');
  if(k==='sal'){if(s==='low')m=`Raise by ${sd(id-x)}: mix in about ${f((id-x)*V)} of salt (check your brand’s instructions), no more than ${sd(1)} per day.`;else m=`Lower by ${sd(x-id)}: remove about ${(V*(x-id)/x).toFixed(0)} L and replace with RODI water, no more than ${sd(1)} per day. Top up evaporation with RODI only.`}
  else if(k==='temp')m=s==='low'?'Check heater size and thermostat. Raise gradually, no more than 1 °C per day.':'Improve cooling: a fan across the surface, lid ventilation, or a chiller. Check pumps and lights for extra heat.';
@@ -147,7 +151,7 @@ function rec(p,x,s,V,ex){
  else if(k==='po4')m=s==='high'?'Do a 15–20% water change and use phosphate-removing media (GFO) in a reactor. Lower slowly, no faster than about 0.05 ppm per day, to avoid shocking corals.':'Phosphate is low. Feed a little more and ease off GFO, carbon or heavy skimming.';
  else m='Toxic to fish and corals. Do a 25–30% water change now, check for dead livestock or overfeeding, and confirm the biofilter is healthy. Consider an ammonia detoxifier while you fix it.';
  if(k==='nh3'||k==='no2')ex=true;
- return{k,ex,c:ex?'bad':c,t:`${ex?'⚠ ':''}${p.n}: ${fx(x)}${u} <span class="st ${ex?'ext':s}">${ex&&k!=='nh3'&&k!=='no2'?'Very ':''}${s==='low'?'Low':'High'}</span> (ideal ${fx(r[0])}–${fx(r[1])})`,m}}
+ return{k,ex,c:ex?'bad':c,t:`${ex?'⚠ ':''}${p.n}: ${fx(x)}${u} <span class="st ${ex?'ext':s}">${lab(s,vx)}</span> (ideal ${fx(r[0])}–${fx(r[1])})`,m}}
 
 function maint(k,x,V){
  const dt=$('dt').value,prev=LOG.filter(e=>e.d<dt&&e.v[k]!=null).sort((a,b)=>b.d.localeCompare(a.d))[0];
@@ -161,11 +165,11 @@ function update(){
  $('tsum').textContent=V.toFixed(0)+' L, '+G.find(g=>g[0]===GP)[1];
  P.forEach(p=>{const e=$('i_'+p.k).value;val[p.k]=e===''?null:parseFloat(e)});
  if(val.sal!=null)val.sal=toP(val.sal);
- P.forEach(p=>{const x=val[p.k],r=R[GP][p.k],b=$('b_'+p.k),inp=$('i_'+p.k);
+ P.forEach(p=>{const x=val[p.k],r=rr(p.k),b=$('b_'+p.k),inp=$('i_'+p.k);
   if(x==null||isNaN(x)){b.textContent='';b.className='badge';inp.classList.remove('xt');return}
   const s=x<r[0]?'low':x>r[1]?'high':'ok',ex=s!=='ok'&&(x<r[2]||x>r[3]);
   inp.classList.toggle('xt',ex);
-  b.textContent=s==='ok'?'In range':(ex?'Very ':'')+(s==='low'?'low':'high');
+  b.textContent=s==='ok'?'In range':lab(s,ex);
   b.className='badge '+(s==='ok'?'ok':ex?'ext':s);
   if(s!=='ok'){const o=rec(p,x,s,V,ex);o.sev=(x<r[0]?r[0]-x:x-r[1])/((r[3]-r[2])||1);recs.push(o)}});
  const RK=['nh3','no2','temp','sal','mg','alk','ca','ph','no3','po4'],tier=o=>o.k==='nh3'||o.k==='no2'?0:o.ex?1:2;

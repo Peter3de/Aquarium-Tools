@@ -94,4 +94,10 @@ footer{color:var(--mu);font-size:13px;margin-top:24px}
 </div></details>
 
 <footer>General guidance only, not a substitute for advice from an aquatic professional. Retest after every change and adjust slowly.<br>© 2026 Peter Ede</footer>
-</main></body></html>
+</main>
+<script>
+// Open the section a link points to, so the contents chips and shared links land on visible text.
+function openHash(){var e=location.hash&&document.getElementById(location.hash.slice(1));if(e&&e.tagName==='DETAILS')e.open=true}
+document.querySelectorAll('.nav a').forEach(function(a){a.addEventListener('click',function(){var d=document.querySelector(a.getAttribute('href'));if(d)d.open=true})});
+addEventListener('hashchange',openHash);openHash();
+</script></body></html>
