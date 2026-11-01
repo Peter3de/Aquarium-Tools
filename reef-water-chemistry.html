@@ -120,7 +120,9 @@ function check(){
  const id=k=>(r[k][0]+r[k][1])/2;
  if(v._sal==='low')add('Salinity is low','Raise it first, no more than 1 ppt (0.001 SG) per day by mixing salt water. Your other readings will rise with it, so retest them afterwards.');
  if(v._sal==='high')add('Salinity is high','Lower it first by replacing water with RODI, no more than 1 ppt (0.001 SG) per day. Calcium, magnesium and alkalinity will fall with it, so retest them afterwards.');
- if(v._mg==='low')add('Magnesium is low: fix this before calcium or alkalinity',`Low magnesium lets calcium and alkalinity precipitate. ${dose('mg',id('mg')-v.mg,500).replace('about','about (for 500 L; use the calculator for your volume)')}`,true);
+ if(v._mg==='low'){const d=id('mg')-v.mg,V=parseFloat($('cv').value),pr=typeof PR!=='undefined'?PR.mg.prod[+$('p_mg').value]:null;
+  const how=V>0&&pr?`To reach about ${Math.round(id('mg'))} ppm in your ${Math.round(V)} L system, add about ${amt(d*V*pr[1],pr[2])} of ${pr[0]} in total, spread over ${Math.max(1,Math.ceil(d/50-1e-9))} day${d>50?'s':''}. The magnesium calculator below has the details.`:'Use the magnesium calculator below for the amount.';
+  add('Magnesium is low: fix this before calcium or alkalinity',`Low magnesium lets calcium and alkalinity precipitate. ${how}`,true)}
  if(v._alk==='low')add('Alkalinity is low',`Raise it slowly, no more than 1 dKH per day. ${v._mg==='low'?'Do magnesium first. ':''}Use the calculator below for your tank volume.`);
  if(v._alk==='high')add('Alkalinity is high','Pause alkalinity dosing and let corals use it. Don’t raise calcium while alkalinity is high: together they cause precipitation.',v.alk>r.alk[1]+2);
  if(v._ca==='low')add('Calcium is low',`Raise it in steps of no more than 20 ppm a day, on a different day or place from alkalinity. ${v._mg==='low'?'Fix magnesium first. ':''}`);
@@ -197,7 +199,7 @@ function bal(){
   rows+=`<tr><td>${q.n}</td><td>${fm(k,c)} ${q.u}</td><td>${fm(k,tg[k])} ${q.u}</td><td>${isNaN(dd)?'':(dd>0?'+':'')+fm(k,dd)}</td><td style="white-space:normal;min-width:260px">${a}</td></tr>`});
  h+=`<div class="w"><table><tr><th>Element</th><th>Now</th><th>Target</th><th>Change</th><th>What to do</th></tr>${rows}</table></div><p class="mu" style="margin-top:8px">Work down the table in order: magnesium first, then alkalinity, then calcium, with calcium and alkalinity on different days. A water change moves all three toward your new salt water values, so retest after each one before dosing more. To keep the balance afterwards, replace about 7 ppm of calcium for every 1 dKH of alkalinity used.</p><p class="mu">Alkalinity target: ${why.alk}. Magnesium target: ${why.mg}. At ${T} ppm calcium, seawater-proportional alkalinity would be about ${(T/60).toFixed(1)} dKH, but any value inside the ideal range works.</p>`;
  o.innerHTML=h}
-function calcAll(){Object.keys(PR).forEach(calcK);bal()}
+function calcAll(){Object.keys(PR).forEach(calcK);bal();check()}
 function tgt(){Object.keys(PR).forEach(k=>{const q=R[GP][k],m=(q[0]+q[1])/2;if(k==='ca')$('b_t').value=Math.round(m);$('t_'+k).value=k==='alk'?+m.toFixed(1):Math.round(m)});calcAll()}
 try{const sp=JSON.parse(localStorage.getItem('rc-prod')||'{}');Object.keys(PR).forEach(k=>{if(sp[k]!=null&&sp[k]<PR[k].prod.length)$('p_'+k).value=sp[k]});const sv=localStorage.getItem('rc-vol');if(sv)$('cv').value=sv}catch(e){}
 $('calcs').oninput=calcAll;$('bal').oninput=calcAll;

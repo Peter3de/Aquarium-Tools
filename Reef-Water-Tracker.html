@@ -58,6 +58,8 @@ select,input[type=number],input[type=date]{padding:9px 10px;border-radius:10px;b
 .rec b{font:600 15px/1.25 "Bricolage Grotesque",Figtree,sans-serif;display:block}
 .rec p{margin:4px 0 0}
 .scroll{overflow-x:auto}
+.bk{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 6px}.bk .btn{flex:1 1 140px}
+#bkt{width:100%;min-height:70px;margin:6px 0;padding:8px 10px;border-radius:10px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);font:13px/1.4 ui-monospace,Consolas,monospace}
 footer{color:var(--mu);font-size:13px;text-align:center;padding:24px 16px 32px}
 .le{background:var(--bg);border:1px solid var(--ln);border-radius:12px;padding:8px 12px;margin:0 0 8px}
 .lh{display:flex;justify-content:space-between;align-items:center;margin:0 0 6px}
@@ -89,7 +91,12 @@ footer{color:var(--mu);font-size:13px;text-align:center;padding:24px 16px 32px}
 
 <div class="ph"><h3>What to do, in order of priority</h3><div id="out"></div></div>
 
-<details class="lt"><summary>My log</summary><div class="lb"><div class="scroll" id="log"></div><p>Saved on this device only. With two or more entries, the tracker estimates how fast alkalinity, calcium and magnesium are used.</p></div></details>
+<details class="lt"><summary>My log</summary><div class="lb"><div class="scroll" id="log"></div>
+<div class="bk"><button class="btn" id="bk" type="button">Download backup</button><button class="btn" id="bkc" type="button">Copy backup</button><button class="btn" id="rs" type="button">Restore backup</button><button class="btn" id="csv" type="button">Export CSV</button></div>
+<input id="rsf" type="file" accept=".json,application/json" hidden>
+<textarea id="bkt" hidden aria-label="Backup text" placeholder="Paste a backup here, then select Restore backup."></textarea>
+<p class="mu" id="bkm" role="status" style="margin:0 0 8px"></p>
+<p>Saved on this device only. With two or more entries, the tracker estimates how fast alkalinity, calcium and magnesium are used.</p></div></details>
 </main>
 <footer>Guidelines only. Dose amounts are the pure-chemical equivalents; for commercial products follow the label. Change parameters slowly, retest after each adjustment, and confirm odd readings with a second test kit. SG and ppt are converted at about 25 °C (1.025 SG is roughly 34 ppt).<br>© 2026 Peter Ede</footer>
 <script>
@@ -108,7 +115,7 @@ fowlr:{...N,temp:[24,27,23,28],sal:[34,35,s2p(1.023),s2p(1.027)],ph:[8.1,8.4,8,8
 const G=[['mixed','Mixed reef'],['soft','Soft corals'],['lps','LPS'],['sps','SPS'],['fowlr','Fish only']];
 const TK=[["30 × 30 × 30 cm nano cube",30,30,30],["45 × 45 × 45 cm cube",45,45,45],["60 × 45 × 45 cm",60,45,45],["90 × 45 × 45 cm",90,45,45],["120 × 50 × 50 cm",120,50,50],["4 × 2 × 2 ft (122 × 61 × 61 cm)",122,61,61],["5 × 2 × 2 ft (152 × 61 × 61 cm)",152,61,61],["6 × 2 × 2 ft (183 × 61 × 61 cm)",183,61,61],["6 × 3 × 2.5 ft (183 × 91 × 76 cm)",183,91,76],["8 × 3 × 2.5 ft (244 × 91 × 76 cm)",244,91,76]];
 const F={alk:.030,ca:.00367,mg:.00836},M={alk:1,ca:20,mg:50};
-const CH={alk:'sodium bicarbonate (baking soda)',ca:'calcium chloride dihydrate',mg:'magnesium chloride hexahydrate'};
+const CH={alk:'sodium bicarbonate (food or lab grade)',ca:'calcium chloride dihydrate (food or lab grade)',mg:'magnesium chloride hexahydrate (food or lab grade)'};
 let D=[122,61,61],LOG=[],SU='ppt',GP='sps';
 try{LOG=JSON.parse(localStorage.getItem('reef-log')||'[]')}catch(e){LOG=[]}
 const sf=v=>SU==='sg'?(1+v*K).toFixed(3):String(+v.toFixed(1));
@@ -206,4 +213,37 @@ const hh=location.hash.slice(1).toLowerCase();if(R[hh])GP=hh;
 showDims();syncPre();ranges();renderLog();loadLast();update();
 P.forEach(p=>$('i_'+p.k).addEventListener('input',()=>{$('ln').textContent=''}));
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[data-x]');if(a&&window.top===window.self)a.removeAttribute('target')},true);
+
+// ---- Backup, restore and CSV export for the log ----
+(function(){
+ const KEYS=P.map(p=>p.k),msg=t=>{$('bkm').textContent=t};
+ const stamp=()=>new Date().toISOString().slice(0,10);
+ const sorted=()=>[...LOG].sort((a,b)=>a.d.localeCompare(b.d));
+ const dl=(name,text,type)=>{try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();a.remove();return true}catch(e){return false}};
+ const bk=()=>JSON.stringify({app:'reef-water-tracker',version:1,saved:stamp(),log:sorted()},null,1);
+ const none=()=>{if(LOG.length)return false;msg('Nothing to back up yet. Save a reading to the log first.');return true};
+ $('bk').onclick=()=>{if(none())return;msg(dl('reef-water-tracker-backup-'+stamp()+'.json',bk(),'application/json')?'Backup downloaded. If no file appeared, your browser may block downloads: use Copy backup instead.':'The download could not start. Use Copy backup instead.')};
+ $('bkc').onclick=()=>{if(none())return;const t=bk(),x=$('bkt');x.hidden=false;x.value=t;x.select();
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>msg('Backup copied. Paste it somewhere safe.'),()=>msg('Copy the text in the box and keep it somewhere safe.'));
+  else msg('Copy the text in the box and keep it somewhere safe.')};
+ function clean(o){const arr=Array.isArray(o)?o:(o&&Array.isArray(o.log)?o.log:null);if(!arr)return null;const m=new Map();
+  arr.forEach(e=>{if(!e||typeof e.d!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(e.d)||!e.v||typeof e.v!=='object')return;const v={};
+   KEYS.forEach(k=>{const raw=e.v[k];if(raw===null||raw===undefined||raw==='')return;const n=typeof raw==='number'?raw:parseFloat(raw);if(isFinite(n))v[k]=n});
+   if(Object.keys(v).length)m.set(e.d,{d:e.d,v})});
+  return m.size?[...m.values()]:null}
+ function restore(txt){let o;try{o=JSON.parse(txt)}catch(e){msg('That is not a Reef Water Tracker backup.');return}
+  const en=clean(o);if(!en){msg('No readings were found in that backup.');return}
+  const ds=new Set(en.map(e=>e.d));LOG=LOG.filter(e=>!ds.has(e.d)).concat(en);persist();renderLog();update();
+  $('bkt').value='';$('bkt').hidden=true;
+  msg('Restored '+en.length+(en.length===1?' entry':' entries')+'. Any entries with the same date were replaced.')}
+ $('rs').onclick=()=>{const x=$('bkt');if(!x.hidden&&x.value.trim()){restore(x.value);return}
+  x.hidden=false;msg('Choose a backup file, or paste a backup into the box and select Restore backup again.');$('rsf').click()};
+ $('rsf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>restore(String(r.result));r.readAsText(f);e.target.value=''};
+ $('csv').onclick=()=>{if(!LOG.length){msg('Nothing to export yet. Save a reading to the log first.');return}
+  const q=x=>/[",\r\n]/.test(x)?'"'+x.replace(/"/g,'""')+'"':x;
+  const H=['Date',...P.map(p=>p.n+(p.k==='sal'?' (ppt)':p.u?' ('+p.u+')':''))];
+  const rows=sorted().map(e=>[e.d,...P.map(p=>e.v[p.k]==null?'':String(e.v[p.k]))]);
+  const t=[H,...rows].map(r=>r.map(q).join(',')).join('\r\n');
+  msg(dl('reef-water-tracker-log-'+stamp()+'.csv','\ufeff'+t,'text/csv')?'CSV downloaded. Salinity is in ppt. If no file appeared, your browser may block downloads.':'The download could not start.')};
+})();
 </script></body></html>
