@@ -64,7 +64,7 @@ footer{color:var(--mu);font-size:13px;text-align:center;padding:24px 16px 32px}
 <p class="mu" id="trk" style="margin:0 0 8px"></p>
 <p style="margin:0 0 8px"><button class="chip" id="trkb" type="button">Fill from Reef Water Tracker</button> <button class="chip" id="trkf" type="button">Load from Tracker backup file</button><input id="trki" type="file" accept=".json,.csv,.txt,application/json,text/csv" hidden></p>
 <div class="w"><table><tr><th>Parameter</th><th>Your reading</th><th>Ideal (<span id="gn"></span>)</th><th>Status</th></tr><tbody id="rows"></tbody></table></div>
-<p class="mu" style="margin-top:8px">Ranges are the ideal values from the Reef Coral Guide for the group chosen above. Natural seawater is about 35 ppt, 420 ppm calcium, 1290 ppm magnesium and 6.5–7 dKH.</p>
+<p class="mu" style="margin-top:8px">Ranges are the ideal values from the Reef Coral Guide for the group chosen above. For alkalinity, 7–11 dKH is acceptable, and the optimal range for your coral group is shown in brackets; the calculators aim for the optimal range. Natural seawater is about 35 ppt, 420 ppm calcium, 1290 ppm magnesium and 6.5–7 dKH.</p>
 <h3 style="margin-top:14px">What to do, in order</h3>
 <div id="out"></div>
 
@@ -85,12 +85,12 @@ footer{color:var(--mu);font-size:13px;text-align:center;padding:24px 16px 32px}
 <div class="card"><div class="calc" style="margin:0"><label>System litres (tank plus sump)<input id="cv" type="number" min="1" value="500"></label></div>
 <p class="mu" style="margin:8px 0 0">Current readings fill in from Check my water above, or you can type them here. Targets start at the middle of the ideal range for the coral group chosen at the top; change them if you like. Each calculator works out a raise (grams to add) or a lower (water change), and a daily maintenance dose if you enter how much you lose per day. Use food-grade or laboratory-grade chemicals only.</p></div>
 <div id="calcs"></div>
-<p class="mu">Amounts are pure-chemical equivalents. Per litre: 0.030 g sodium bicarbonate per dKH, 0.0189 g anhydrous sodium carbonate per dKH, 3.67 mg calcium chloride dihydrate (2.77 mg anhydrous) per ppm calcium, 8.36 mg magnesium chloride hexahydrate (10.1 mg magnesium sulfate heptahydrate) per ppm magnesium. Use only food-grade or laboratory-grade chemicals, not supermarket, hardware or pool products such as baking soda, washing soda, Epsom salt or de-icer, which can contain additives or impurities. Red Sea Foundation A, B and C use the label rates: liquid, 1 mL per 100 L raises calcium 2 ppm, alkalinity 0.1 dKH or magnesium 1 ppm; powder, 1 g per 100 L raises calcium 3.6 ppm, alkalinity 0.33 dKH or magnesium 1.34 ppm. Seachem Reef Builder uses 3 g per 150 L for +0.25 meq/L (0.7 dKH), and Reef Advantage Calcium about 5 g per 150 L for +12 ppm. Always check the label on your own bottle. Maximum steps per day: 1 dKH, 20 ppm calcium, 50 ppm magnesium.</p>
+<p class="mu">Amounts are pure-chemical equivalents. Per litre: 0.030 g sodium bicarbonate per dKH, 0.0189 g anhydrous sodium carbonate per dKH, 3.67 mg calcium chloride dihydrate (2.77 mg anhydrous) per ppm calcium, 8.36 mg magnesium chloride hexahydrate (10.1 mg magnesium sulfate heptahydrate) per ppm magnesium. Use only food-grade or laboratory-grade chemicals, not supermarket, hardware or pool products such as baking soda, washing soda, Epsom salt or de-icer, which can contain additives or impurities. Red Sea Foundation A, B and C use the label rates: liquid, 1 mL per 100 L raises calcium 2 ppm, alkalinity 0.1 dKH or magnesium 1 ppm; powder, 1 g per 100 L raises calcium 3.6 ppm, alkalinity 0.33 dKH or magnesium 1.34 ppm. Seachem Reef Builder uses 3 g per 150 L for +0.25 meq/L (0.7 dKH), and Reef Advantage Calcium about 5 g per 150 L for +12 ppm. Always check the label on your own bottle. Maximum steps per day: 1 dKH, 20 ppm calcium, 50 ppm magnesium. The same limits apply when lowering a reading with water changes.</p>
 <h2>4. Balance everything to my calcium</h2>
 <div class="card" id="bal"><p>Choose the calcium level you want to hold. Matching alkalinity and magnesium targets are worked out, then each element gets a raise or lower amount. A reading that is already inside the ideal range is left alone, and you can enter your own alkalinity and magnesium targets. Uses the system litres, products and new salt water values from section 3.</p>
 <div class="calc"><label>Calcium I want to hold (ppm)<input id="b_t" type="number" step="5"></label><label>Current calcium (ppm)<input id="bl_ca" type="number" step="any"></label><label>Current alkalinity (dKH)<input id="bl_alk" type="number" step="any"></label><label>Current magnesium (ppm)<input id="bl_mg" type="number" step="any"></label><label>Alkalinity I want (dKH, optional)<input id="bl_ta" type="number" step="any" placeholder="auto"></label><label>Magnesium I want (ppm, optional)<input id="bl_tm" type="number" step="any" placeholder="auto"></label></div>
 <div id="bo"></div>
-<p class="mu">How the targets are set: if your alkalinity or magnesium is already inside the ideal range for your coral group, it is kept as it is. Otherwise alkalinity moves to the nearest sensible point in the range, and magnesium to about 3.07 times calcium (the natural seawater ratio) kept inside the range. Anything you type in the “I want” boxes is used instead.</p></div>
+<p class="mu">How the targets are set: if your alkalinity or magnesium is already inside the ideal range for your coral group, it is kept as it is. Otherwise alkalinity moves to the optimal range for your coral group, and magnesium to about 3.07 times calcium (the natural seawater ratio) kept inside the range. Anything you type in the “I want” boxes is used instead.</p></div>
 <div class="card"><h3>Keeping balanced day to day</h3><p>Test alkalinity and calcium weekly, magnesium every two weeks, salinity and temperature every day. Note how many dKH you lose per day. For every 1 dKH you replace, replace about 7 ppm of calcium. If calcium stays level while alkalinity falls, your calcium is coming from salt water changes: dose alkalinity only. Use the Reef Water Tracker to log readings and see your daily consumption.</p></div>
 </main>
 <footer>Guidelines only. Change parameters slowly, retest after each adjustment and confirm odd readings with a second test kit. SG and ppt are converted at about 25 °C.<br><a href="index.html" style="color:var(--ac);font-weight:600">← Back to Reef Tools</a><br>© 2026 Peter Ede</footer>
@@ -99,7 +99,9 @@ const $=id=>document.getElementById(id);
 const K=.00074;
 const G=[['mixed','Mixed reef'],['soft','Soft corals'],['lps','LPS'],['sps','SPS'],['fowlr','Fish only']];
 // [ideal low, ideal high] from the Reef Coral Guide
-const R={mixed:{sal:[34,35],ph:[8.1,8.3],alk:[7,8.5],ca:[420,440],mg:[1300,1380]},soft:{sal:[34,35],ph:[8.1,8.3],alk:[7,9],ca:[400,440],mg:[1280,1380]},lps:{sal:[34,35],ph:[8.1,8.3],alk:[7,9],ca:[400,450],mg:[1280,1380]},sps:{sal:[34,35],ph:[8.1,8.3],alk:[7,8.5],ca:[420,450],mg:[1300,1400]},fowlr:{sal:[34,35],ph:[8.1,8.4],alk:[7,11],ca:[380,450],mg:[1250,1400]}};
+const R={mixed:{sal:[34,35],ph:[8.1,8.3],alk:[7,11],ca:[420,440],mg:[1300,1380]},soft:{sal:[34,35],ph:[8.1,8.3],alk:[7,11],ca:[400,440],mg:[1280,1380]},lps:{sal:[34,35],ph:[8.1,8.3],alk:[7,11],ca:[400,450],mg:[1280,1380]},sps:{sal:[34,35],ph:[8.1,8.3],alk:[7,11],ca:[420,450],mg:[1300,1400]},fowlr:{sal:[34,35],ph:[8.1,8.4],alk:[7,11],ca:[380,450],mg:[1250,1400]}};
+// optimal alkalinity inside the acceptable 7–11 dKH range, per coral group
+const O={mixed:[7,8.5],soft:[7,9],lps:[7,9],sps:[7,8.5],fowlr:[7,11]};
 const P=[{k:'sal',n:'Salinity',u:'ppt',s:.1},{k:'mg',n:'Magnesium',u:'ppm',s:5},{k:'alk',n:'Alkalinity',u:'dKH',s:.1},{k:'ca',n:'Calcium',u:'ppm',s:1},{k:'ph',n:'pH',u:'',s:.01}];
 const F={alk:.030,ca:.00367,mg:.00836},M={alk:1,ca:20,mg:50};
 const CH={alk:'sodium bicarbonate (food or lab grade)',ca:'calcium chloride dihydrate (food or lab grade)',mg:'magnesium chloride hexahydrate (food or lab grade)'};
@@ -115,7 +117,7 @@ function check(){
  const r=R[GP];
  P.forEach(p=>{const x=v[p.k],b=$('b_'+p.k),q=r[p.k];
   if(x==null||isNaN(x)){b.textContent='';b.className='badge';return}
-  const s=x<q[0]?'low':x>q[1]?'high':'ok';b.textContent=s==='ok'?'In range':s==='low'?'Low':'High';b.className='badge '+s;v['_'+p.k]=s});
+  const s=x<q[0]?'low':x>q[1]?'high':'ok';b.textContent=s==='ok'?(p.k==='alk'&&x>O[GP][1]+1e-9?'In range, above optimal':'In range'):s==='low'?'Low':'High';b.className='badge '+s;v['_'+p.k]=s});
  const add=(t,m,bad)=>recs.push(`<div class="rec ${bad?'bad':''}"><b>${t}</b><p>${m}</p></div>`);
  const id=k=>(r[k][0]+r[k][1])/2;
  if(v._sal==='low')add('Salinity is low','Raise it first, no more than 1 ppt (0.001 SG) per day by mixing salt water. Your other readings will rise with it, so retest them afterwards.');
@@ -134,7 +136,7 @@ function check(){
  const any=P.some(p=>v[p.k]!=null&&!isNaN(v[p.k]));
  $('out').innerHTML=!any?'<p class="mu">Enter any readings you have to see what to fix first.</p>':recs.length?recs.join(''):'<div class="rec good"><b>Everything you entered is in the ideal range.</b><p>Keep your routine and retest on schedule.</p></div>';
 }
-function ranges(){const r=R[GP];P.forEach(p=>{const q=r[p.k];$('r_'+p.k).textContent=p.k==='sal'?(SU==='sg'?`${(1+q[0]*K).toFixed(3)}–${(1+q[1]*K).toFixed(3)} SG (${q[0]}–${q[1]} ppt)`:`${q[0]}–${q[1]} ppt (${(1+q[0]*K).toFixed(3)}–${(1+q[1]*K).toFixed(3)} SG)`):q[0]+'–'+q[1]+(p.u?' '+p.u:'')});
+function ranges(){const r=R[GP];P.forEach(p=>{const q=r[p.k];$('r_'+p.k).textContent=p.k==='sal'?(SU==='sg'?`${(1+q[0]*K).toFixed(3)}–${(1+q[1]*K).toFixed(3)} SG (${q[0]}–${q[1]} ppt)`:`${q[0]}–${q[1]} ppt (${(1+q[0]*K).toFixed(3)}–${(1+q[1]*K).toFixed(3)} SG)`):q[0]+'–'+q[1]+(p.u?' '+p.u:'')+(p.k==='alk'&&(O[GP][0]!==q[0]||O[GP][1]!==q[1])?' (optimal '+O[GP][0]+'–'+O[GP][1]+')':'')});
  document.querySelectorAll('.chip[data-g]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===GP));
  $('gn').textContent=G.find(x=>x[0]===GP)[1];check();if(typeof tgt==='function'&&$('t_alk'))tgt()}
 $('chips').onclick=e=>{const x=e.target.dataset&&e.target.dataset.g;if(x){GP=x;ranges()}};
@@ -146,6 +148,12 @@ ca:{n:'Calcium',u:'ppm',fresh:420,mx:20,prod:[['Calcium chloride dihydrate (food
 mg:{n:'Magnesium',u:'ppm',fresh:1290,mx:50,prod:[['Magnesium chloride hexahydrate (food or lab grade)',.00836,'g'],['Magnesium sulfate heptahydrate (food or lab grade)',.01014,'g'],['Red Sea Reef Foundation C (liquid)',.01,'mL'],['Red Sea Reef Foundation C (powder)',.00746,'g']]}};
 const amt=(x,u)=>u==='mL'?(x>=1000?(x/1000).toFixed(2)+' L':x>=10?x.toFixed(0)+' mL':x.toFixed(1)+' mL'):g(x);
 $('calcs').innerHTML=Object.keys(PR).map(k=>{const q=PR[k];return `<div class="card"><h3>${q.n} calculator</h3><div class="calc"><label>Current (${q.u})<input id="c_${k}" type="number" step="any"></label><label>Target (${q.u})<input id="t_${k}" type="number" step="any"></label><label>New salt water reads<input id="f_${k}" type="number" step="any" value="${q.fresh}"></label><label>Daily drop (optional)<input id="d_${k}" type="number" step="any" min="0" placeholder="${q.u} per day"></label>${k==='mg'?'<label>My calcium (optional)<input id="x_mg" type="number" step="any" placeholder="ppm"></label>':''}<label>Product<select id="p_${k}">${q.prod.map((p,i)=>`<option value="${i}">${p[0]}</option>`).join('')}</select></label></div><div id="o_${k}"></div></div>`}).join('');
+function wcPlan(c,t,f,mx,tol){const st=[];let cur=c;
+ while(cur-t>tol&&st.length<10){const p=Math.min(.25,mx/(cur-f),(cur-t)/(cur-f));st.push(p);cur-=(cur-f)*p}
+ if(!st.length)st.push(Math.min(.25,(c-t)/(c-f)));return st}
+function wcText(st,V,q,f){const L=st.map(p=>({p:Math.max(1,Math.round(p*100)),l:Math.round(V*p)}));
+ return st.length===1?`Replace about <b>${L[0].p}%</b> of the water (about ${L[0].l} L) with new salt water that reads ${f}.`:`Do <b>${st.length} water changes, about a day apart</b>: ${L.map(x=>x.p+'% ('+x.l+' L)').join(', then ')}, each with new salt water that reads ${f}. Each is sized so ${q.n.toLowerCase()} falls by no more than ${q.mx} ${q.u} in a day.`}
+const WTOL={alk:.2,ca:5,mg:20};
 function calcK(k){
  const q=PR[k],c=parseFloat($('c_'+k).value),t=parseFloat($('t_'+k).value),f=parseFloat($('f_'+k).value),d=parseFloat($('d_'+k).value),V=parseFloat($('cv').value),pr=q.prod[+$('p_'+k).value],o=$('o_'+k);
  if(!(V>0)){o.innerHTML='<p class="mu">Enter your system litres above.</p>';return}
@@ -157,7 +165,7 @@ function calcK(k){
    if(k==='ca')h+=`<p class="mu">Check magnesium first: if it is low, this calcium may not hold. This raise needs about ${(dd/7).toFixed(1)} dKH of alkalinity to match when corals use it.</p>`;
    if(k==='alk'&&pr[1]<.02)h+=`<p class="mu">Sodium carbonate raises pH more than sodium bicarbonate. Add it in smaller, slower steps.</p>`}
   else if(t<c){
-   if(!isNaN(f)&&c>f&&t>=f){const pc=(c-t)/(c-f)*100;h+=`<div class="rec"><b>Lower ${q.n.toLowerCase()} from ${c} to ${t} ${q.u}</b><p>Replace about <b>${pc.toFixed(0)}%</b> of the water (about ${(V*pc/100).toFixed(0)} L) with new salt water that reads ${f}. Pause dosing.${pc>25?' That is a lot in one go: split it over several water changes a few days apart.':''}</p></div>`}
+   if(!isNaN(f)&&c>f&&t>=f){const st=wcPlan(c,t,f,q.mx,WTOL[k]);h+=`<div class="rec"><b>Lower ${q.n.toLowerCase()} from ${c} to ${t} ${q.u}</b><p>${wcText(st,V,q,f)} Pause dosing.</p></div>`}
    else h+=`<div class="rec"><b>Target is below your new salt water</b><p>A water change cannot reach it. Pause dosing and let your corals use it down, no faster than ${q.mx} ${q.u} per day.</p></div>`}
   else h+=`<div class="rec good"><b>Already at target.</b></div>`;
   if(k==='mg'){const x=parseFloat($('x_mg').value);if(x>0)h+=`<p class="mu">At your target, magnesium to calcium is ${(t/x).toFixed(1)}:1. Aim for about 3:1.</p>`}
@@ -178,8 +186,8 @@ function bal(){
  let at,mt;
  if(ta>0){at=ta;why.alk='the target you entered'}
  else if(!isNaN(cur.alk)&&cur.alk>=r.alk[0]&&cur.alk<=r.alk[1]){at=cur.alk;why.alk='your reading is already inside the ideal range, so it is left alone'}
- else if(cur.alk>r.alk[1]){at=r.alk[1];why.alk='the top of the ideal range'}
- else{at=(r.alk[0]+r.alk[1])/2;why.alk='the middle of the ideal range'}
+ else if(cur.alk>r.alk[1]){at=O[GP][1];why.alk='the top of the optimal range for your coral group'}
+ else{at=(O[GP][0]+O[GP][1])/2;why.alk='the middle of the optimal range for your coral group'}
  if(tm>0){mt=tm;why.mg='the target you entered'}
  else if(!isNaN(cur.mg)&&cur.mg>=r.mg[0]&&cur.mg<=r.mg[1]&&cur.mg/T>=2.7&&cur.mg/T<=3.4){mt=cur.mg;why.mg='your reading is inside the ideal range and about 3 times calcium, so it is left alone'}
  else{mt=cl(T*3.07,r.mg[0],r.mg[1]);why.mg='about 3.07 times calcium, kept inside the ideal range'}
@@ -194,13 +202,13 @@ function bal(){
   if(Math.abs(dd)<=tol[k])a='<span class="ok">On target</span>';
   else if(dd>0){const pr=q.prod[+$('p_'+k).value],tot=dd*V*pr[1],days=Math.max(1,Math.ceil(dd/q.mx-1e-9));a=`<span class="low">Raise</span> by ${fm(k,dd)} ${q.u}: add ${amt(tot,pr[2])} of ${pr[0]} over ${days} day${days>1?'s':''} (${amt(tot/days,pr[2])} a day)`}
   else{const f=parseFloat($('f_'+k).value);
-   if(!isNaN(f)&&c>f&&tg[k]>=f){const pc=(c-tg[k])/(c-f)*100;a=`<span class="high">Lower</span> by ${fm(k,-dd)} ${q.u}: replace about ${pc.toFixed(0)}% of the water (${(V*pc/100).toFixed(0)} L)`}
+   if(!isNaN(f)&&c>f&&tg[k]>=f){const st=wcPlan(c,tg[k],f,q.mx,WTOL[k]);a=`<span class="high">Lower</span> by ${fm(k,-dd)} ${q.u}: ${wcText(st,V,q,f)}`}
    else a=`<span class="high">Lower</span> by ${fm(k,-dd)} ${q.u}: pause dosing and let corals use it down`}
   rows+=`<tr><td>${q.n}</td><td>${fm(k,c)} ${q.u}</td><td>${fm(k,tg[k])} ${q.u}</td><td>${isNaN(dd)?'':(dd>0?'+':'')+fm(k,dd)}</td><td style="white-space:normal;min-width:260px">${a}</td></tr>`});
  h+=`<div class="w"><table><tr><th>Element</th><th>Now</th><th>Target</th><th>Change</th><th>What to do</th></tr>${rows}</table></div><p class="mu" style="margin-top:8px">Work down the table in order: magnesium first, then alkalinity, then calcium, with calcium and alkalinity on different days. A water change moves all three toward your new salt water values, so retest after each one before dosing more. To keep the balance afterwards, replace about 7 ppm of calcium for every 1 dKH of alkalinity used.</p><p class="mu">Alkalinity target: ${why.alk}. Magnesium target: ${why.mg}. At ${T} ppm calcium, seawater-proportional alkalinity would be about ${(T/60).toFixed(1)} dKH, but any value inside the ideal range works.</p>`;
  o.innerHTML=h}
 function calcAll(){Object.keys(PR).forEach(calcK);bal();check()}
-function tgt(){Object.keys(PR).forEach(k=>{const q=R[GP][k],m=(q[0]+q[1])/2;if(k==='ca')$('b_t').value=Math.round(m);$('t_'+k).value=k==='alk'?+m.toFixed(1):Math.round(m)});calcAll()}
+function tgt(){Object.keys(PR).forEach(k=>{const q=k==='alk'?O[GP]:R[GP][k],m=(q[0]+q[1])/2;if(k==='ca')$('b_t').value=Math.round(m);$('t_'+k).value=k==='alk'?+m.toFixed(1):Math.round(m)});calcAll()}
 try{const sp=JSON.parse(localStorage.getItem('rc-prod')||'{}');Object.keys(PR).forEach(k=>{if(sp[k]!=null&&sp[k]<PR[k].prod.length)$('p_'+k).value=sp[k]});const sv=localStorage.getItem('rc-vol');if(sv)$('cv').value=sv}catch(e){}
 $('calcs').oninput=calcAll;$('bal').oninput=calcAll;
 function syncCur(){['alk','ca','mg'].forEach(k=>{const v=$('i_'+k).value;$('c_'+k).value=v;$('bl_'+k).value=v});calcAll()}

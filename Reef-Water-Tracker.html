@@ -107,10 +107,10 @@ const P=[{k:'sal',n:'Salinity',u:'ppt'},{k:'temp',n:'Temperature',u:'°C',s:.1},
 const N={nh3:[0,.05,0,.1],no2:[0,.05,0,.1]};
 // [ideal low, ideal high, tolerated low, tolerated high] (Soft, LPS, SPS from the Reef Coral Guide)
 const R={
-soft:{...N,temp:[24,26,22,28],sal:[34,35,s2p(1.023),s2p(1.027)],ph:[8.1,8.3,7.9,8.4],alk:[7,9,6,11],ca:[400,440,380,460],mg:[1280,1380,1200,1420],no3:[2,10,.5,20],po4:[.03,.1,.01,.2]},
-lps:{...N,temp:[24,26,23,28],sal:[34,35,s2p(1.024),s2p(1.027)],ph:[8.1,8.3,8,8.4],alk:[7,9,6.5,10],ca:[400,450,380,470],mg:[1280,1380,1250,1420],no3:[2,10,1,15],po4:[.03,.1,.02,.15]},
-sps:{...N,temp:[25,26,24,27],sal:[34,35,s2p(1.024),s2p(1.026)],ph:[8.1,8.3,8,8.4],alk:[7,8.5,7,9],ca:[420,450,400,470],mg:[1300,1400,1280,1420],no3:[1,5,.5,10],po4:[.01,.05,.005,.1]},
-mixed:{...N,temp:[25,26,24,27],sal:[34,35,s2p(1.024),s2p(1.026)],ph:[8.1,8.3,8,8.4],alk:[7,8.5,7,9],ca:[420,440,400,460],mg:[1300,1380,1280,1420],no3:[2,5,1,10],po4:[.03,.05,.02,.1]},
+soft:{...N,temp:[24,26,22,28],sal:[34,35,s2p(1.023),s2p(1.027)],ph:[8.1,8.3,7.9,8.4],alk:[7,11,6,12,7,9],ca:[400,440,380,460],mg:[1280,1380,1200,1420],no3:[2,10,.5,20],po4:[.03,.1,.01,.2]},
+lps:{...N,temp:[24,26,23,28],sal:[34,35,s2p(1.024),s2p(1.027)],ph:[8.1,8.3,8,8.4],alk:[7,11,6,12,7,9],ca:[400,450,380,470],mg:[1280,1380,1250,1420],no3:[2,10,1,15],po4:[.03,.1,.02,.15]},
+sps:{...N,temp:[25,26,24,27],sal:[34,35,s2p(1.024),s2p(1.026)],ph:[8.1,8.3,8,8.4],alk:[7,11,6,12,7,8.5],ca:[420,450,400,470],mg:[1300,1400,1280,1420],no3:[1,5,.5,10],po4:[.01,.05,.005,.1]},
+mixed:{...N,temp:[25,26,24,27],sal:[34,35,s2p(1.024),s2p(1.026)],ph:[8.1,8.3,8,8.4],alk:[7,11,6,12,7,8.5],ca:[420,440,400,460],mg:[1300,1380,1280,1420],no3:[2,5,1,10],po4:[.03,.05,.02,.1]},
 fowlr:{...N,temp:[24,27,23,28],sal:[34,35,s2p(1.023),s2p(1.027)],ph:[8.1,8.4,8,8.5],alk:[7,11,6,12],ca:[380,450,350,480],mg:[1250,1400,1200,1450],no3:[0,20,0,40],po4:[0,.2,0,.5]}};
 const G=[['mixed','Mixed reef'],['soft','Soft corals'],['lps','LPS'],['sps','SPS'],['fowlr','Fish only']];
 const TK=[["30 × 30 × 30 cm nano cube",30,30,30],["45 × 45 × 45 cm cube",45,45,45],["60 × 45 × 45 cm",60,45,45],["90 × 45 × 45 cm",90,45,45],["120 × 50 × 50 cm",120,50,50],["4 × 2 × 2 ft (122 × 61 × 61 cm)",122,61,61],["5 × 2 × 2 ft (152 × 61 × 61 cm)",152,61,61],["6 × 2 × 2 ft (183 × 61 × 61 cm)",183,61,61],["6 × 3 × 2.5 ft (183 × 91 × 76 cm)",183,91,76],["8 × 3 × 2.5 ft (244 × 91 × 76 cm)",244,91,76]];
@@ -134,7 +134,7 @@ function showDims(){['L','W','H'].forEach((id,i)=>$(id).value=D[i])}
 function syncPre(){let t=-1;TK.forEach((x,n)=>{if(x[1]==D[0]&&x[2]==D[1]&&x[3]==D[2])t=n});$('pre').value=t}
 function dimCh(fromPre){if(fromPre&&+$('pre').value>=0){const q=TK[+$('pre').value];D=[q[1],q[2],q[3]];showDims()}else{D=['L','W','H'].map((id,i)=>Math.max(20,+$(id).value||[60,45,45][i]));syncPre()}update()}
 function vol(){const l=parseFloat($('lit').value);if(l>0)return l;return D[0]*D[1]*D[2]/1000*.9+(parseFloat($('sump').value)||0)}
-function ranges(){P.forEach(p=>{const r=R[GP][p.k],z=p.k==='nh3'||p.k==='no2';$('ri_'+p.k).textContent=z?'0':rg(p,r[0],r[1]);$('rt_'+p.k).textContent=z?'under 0.1 ppm':rg(p,r[2],r[3])});
+function ranges(){P.forEach(p=>{const r=R[GP][p.k],z=p.k==='nh3'||p.k==='no2';$('ri_'+p.k).textContent=z?'0':rg(p,r[0],r[1])+(r[4]?' (optimal '+rg(p,r[4],r[5])+')':'');$('rt_'+p.k).textContent=z?'under 0.1 ppm':rg(p,r[2],r[3])});
  document.querySelectorAll('.chip[data-g]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===GP));
  const nf=GP==='fowlr'||GP==='mixed';$('gl').href=GURL+(nf?'':'#'+GP);$('gl').textContent=nf?'Coral Guide':'See '+G.find(g=>g[0]===GP)[1]+' in the Guide';$('gn').textContent=GP==='mixed'?'Mixed reef uses the narrowest overlap of the Soft, LPS and SPS ranges, so every coral group is covered. ':''}
 
@@ -142,14 +142,14 @@ function dose(k,d,V){const days=Math.max(1,Math.ceil(d/M[k]-1e-9)),tot=d*V*F[k];
 function split(k,d,V,u){const o=dose(k,d,V);return `Raise by ${d.toFixed(k==='alk'?1:0)} ${u}. Dissolve about ${f(o.tot)} of ${CH[k]} in total, added over ${o.days} day${o.days>1?'s':''} (${f(o.per)} per day, never more than +${M[k]} ${u} per day). Retest 24 hours after each dose.`}
 
 function rec(p,x,s,V,ex){
- const k=p.k,r=R[GP][k],id=(r[0]+r[1])/2;let c='ac',m='';
+ const k=p.k,r=R[GP][k],id=r[4]?(s==='low'?(r[4]+r[5])/2:r[5]):(r[0]+r[1])/2;let c='ac',m='';
  const fx=v=>k==='sal'?sf(v):v,u=k==='sal'?(SU==='sg'?' SG':' ppt'):(p.u?' '+p.u:'');
  if(k==='sal'){if(s==='low')m=`Raise by ${sd(id-x)}: mix in about ${f((id-x)*V)} of salt (check your brand’s instructions), no more than ${sd(1)} per day.`;else m=`Lower by ${sd(x-id)}: remove about ${(V*(x-id)/x).toFixed(0)} L and replace with RODI water, no more than ${sd(1)} per day. Top up evaporation with RODI only.`}
  else if(k==='temp')m=s==='low'?'Check heater size and thermostat. Raise gradually, no more than 1 °C per day.':'Improve cooling: a fan across the surface, lid ventilation, or a chiller. Check pumps and lights for extra heat.';
  else if(k==='ph')m=s==='low'?'Low pH is usually low alkalinity or high indoor CO₂. Ventilate the room, run the skimmer on fresh air, and confirm alkalinity is in range.':'High pH can follow overdosing alkalinity or kalkwasser. Pause dosing and retest.';
  else if(k==='alk'||k==='ca'||k==='mg'){
   if(s==='low')m=split(k,id-x,V,p.u)+(k==='mg'?' Fix magnesium first; low magnesium stops calcium and alkalinity from holding.':' Dose alkalinity and calcium on separate days or in separate parts of the tank. If magnesium is also low, fix that first.');
-  else{m=`Pause ${p.n.toLowerCase()} dosing until it falls back into range.`;if(ex)m+=' It’s outside what corals tolerate, so also do a 20% water change.'}}
+  else{m=`Pause ${p.n.toLowerCase()} dosing until it falls back into range.`;if(ex){const fr={alk:7,ca:420,mg:1290}[k],pc=Math.max(1,Math.floor(Math.min(20,M[k]/(x-fr)*100)));m+=` It’s outside what corals tolerate, so also do a ${pc}% water change (about ${(V*pc/100).toFixed(0)} L) with new salt water, which lowers it by about ${((x-fr)*pc/100).toFixed(k==='alk'?1:0)} ${p.u}. Repeat the next day if it is still too high, and never lower it by more than ${M[k]} ${p.u} in a day.`}}}
  else if(k==='no3')m=s==='high'?`Do a ${Math.min(30,Math.max(10,Math.round((1-id/x)*100)))}% water change (about ${(V*Math.min(30,Math.max(10,Math.round((1-id/x)*100)))/100).toFixed(0)} L) and repeat weekly until in range. Also review feeding, skimmer performance and filter socks, and consider carbon.`:'Nitrate is low for corals. Feed a little more or add fish food; corals can pale when nitrate and phosphate both bottom out.';
  else if(k==='po4')m=s==='high'?'Do a 15–20% water change and use phosphate-removing media (GFO) in a reactor. Lower slowly, no faster than about 0.05 ppm per day, to avoid shocking corals.':'Phosphate is low. Feed a little more and ease off GFO, carbon or heavy skimming.';
  else m='Toxic to fish and corals. Do a 25–30% water change now, check for dead livestock or overfeeding, and confirm the biofilter is healthy. Consider an ammonia detoxifier while you fix it.';
