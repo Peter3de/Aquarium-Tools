@@ -81,7 +81,7 @@ footer{color:var(--mu);font-size:13px;text-align:center;padding:24px 16px 32px}
 <script>
 (function(){
 var $=function(id){return document.getElementById(id)};
-var G=['Clownfish','Gobies & blennies','Wrasses','Tangs','Angelfish','Basslets & dottybacks','Cardinalfish & others','Damsels & chromis'];
+var G=['Clownfish','Gobies & blennies','Wrasses','Tangs','Angelfish','Basslets & dottybacks','Cardinalfish & others','Damsels & chromis','Butterflyfish'];
 // name, scientific, group, adult cm, minimum tank L, care, diet, temperament, reef safe, note, colour 1, colour 2, shape (r round, t tall, l long), pattern (v bands, h stripe, n none)
 var F=[
 ['Ocellaris clownfish','Amphiprion ocellaris',0,11,75,'Easy','Omnivore: pellets, frozen mysis, algae','Peaceful; territorial around its nest','Yes','Hardy and usually captive bred. Best kept as a bonded pair. It does not need an anemone.','#ff7a1a','#f7f3e8','r','v'],
@@ -94,11 +94,13 @@ var F=[
 ['Six line wrasse','Pseudocheilinus hexataenia',2,10,110,'Moderate','Carnivore: frozen mysis, copepods','Semi-aggressive toward similar wrasses','Yes','Eats pest flatworms and small bristle worms. Needs rockwork and a lid.','#e6732e','#3aa6b9','l','h'],
 ['Yellow wrasse','Halichoeres chrysus',2,12,150,'Easy','Carnivore: frozen foods and pellets','Peaceful','With caution','May eat small shrimp and worms. Likes a deep sand bed and a tight lid.','#ffd400','#2b2b2b','l','h'],
 ['Carpenter’s flasher wrasse','Paracheilinus carpenteri',2,8,150,'Moderate','Carnivore: frozen mysis, copepods, fed often','Peaceful; males display to females','Yes','Keep one male with several females in a tank with a tight lid.','#e8473f','#3a6fd8','l','h'],
+['Bluestreak cleaner wrasse','Labroides dimidiatus',2,12,250,'Advanced','Carnivore: parasites and mucus from other fish in the wild; few accept prepared foods','Peaceful','With caution','Most starve in aquariums, so it is not recommended for beginners. Only consider one that already eats prepared food, in a large mature tank with plenty of fish to clean. It may also pick at clam mantles.','#2f8de0','#14213d','l','h'],
 ['Yellow tang','Zebrasoma flavescens',3,20,400,'Moderate','Herbivore: algae sheets, nori, spirulina pellets','Semi-aggressive toward other tangs','Yes','Needs lots of swimming room and algae to graze. Prone to marine ich if stressed.','#ffd400','#fff3a0','t','n'],
 ['Blue hippo tang','Paracanthurus hepatus',3,30,500,'Moderate','Omnivore: algae, mysis, nori','Peaceful but skittish','Yes','Needs a big tank and careful quarantine because it is prone to ich.','#1e5fd6','#ffd400','t','n'],
 ['Purple tang','Zebrasoma xanthurum',3,25,400,'Moderate','Herbivore: algae sheets, nori, spirulina pellets','Aggressive toward similar tangs','Yes','Keep as the only Zebrasoma tang. A strong, active swimmer.','#5b3ea6','#ffd400','t','n'],
 ['Flame angelfish','Centropyge loricula',4,10,250,'Moderate','Omnivore: algae, mysis, spirulina','Semi-aggressive','With caution','May nip at some stony corals, soft corals and clam mantles. Not guaranteed reef safe.','#e8381a','#2b4fb3','t','v'],
 ['Coral beauty angelfish','Centropyge bispinosa',4,10,250,'Moderate','Omnivore: algae, mysis, spirulina','Semi-aggressive','With caution','Can nip at corals and clams in some tanks. Provide plenty of rock to graze.','#5a3dd1','#f2a31b','t','n'],
+['Lemonpeel angelfish','Centropyge flavissima',4,14,250,'Moderate','Omnivore: algae, spirulina, mysis, marine pellets','Semi-aggressive; territorial toward other dwarf angels','With caution','May nip at stony corals, soft corals and clam mantles. Needs plenty of rock to graze and hide in, and a varied diet with algae.','#ffe600','#3b6fd8','t','n'],
 ['Royal gramma','Gramma loreto',5,8,110,'Easy','Carnivore: frozen mysis, brine shrimp','Peaceful but territorial with its own kind','Yes','Hides in caves and often swims upside down under overhangs.','#7a1fa2','#f5c518','r','n'],
 ['Orchid dottyback','Pseudochromis fridmani',5,7,110,'Easy','Carnivore: frozen mysis, brine shrimp','Aggressive, especially to similar-looking fish','Yes','Keep one unless you have a mated pair. Add it last.','#b01c9d','#d96bd0','l','n'],
 ['Banggai cardinalfish','Pterapogon kauderni',6,8,110,'Easy','Carnivore: frozen mysis, copepods','Peaceful','Yes','Endangered in the wild, so buy captive-bred fish. The male broods eggs in his mouth.','#d7dde0','#16212b','r','v'],
@@ -106,7 +108,8 @@ var F=[
 ['Flame hawkfish','Neocirrhites armatus',6,9,150,'Moderate','Carnivore: mysis, krill, meaty foods','Semi-aggressive','With caution','Perches on rock and coral. May eat small shrimp and crabs.','#d62718','#16212b','l','h'],
 ['Mandarin dragonet','Synchiropus splendidus',6,7,200,'Advanced','Carnivore: live copepods; some accept frozen food','Peaceful','Yes','Needs a mature tank with plenty of live copepods. Only suitable if it eats prepared food.','#1b86c6','#f26b1d','l','n'],
 ['Blue-green chromis','Chromis viridis',7,8,150,'Easy','Omnivore: pellets, frozen mysis','Peaceful in a group','Yes','Best in a group of five or more in a larger tank. A lone fish can become a bully.','#5fd6b4','#bff3e2','r','n'],
-['Yellowtail blue damselfish','Chrysiptera parasema',7,6,75,'Easy','Omnivore: pellets, frozen mysis','Semi-aggressive and territorial','Yes','Hardy but pushy. Add it last.','#2f7cf0','#ffd400','r','n']
+['Yellowtail blue damselfish','Chrysiptera parasema',7,6,75,'Easy','Omnivore: pellets, frozen mysis','Semi-aggressive and territorial','Yes','Hardy but pushy. Add it last.','#2f7cf0','#ffd400','r','n'],
+['Copperband butterflyfish','Chelmon rostratus',8,20,300,'Advanced','Carnivore: frozen mysis, brine shrimp, chopped seafood; fed small meals often','Peaceful but shy; may bully other butterflyfish','With caution','Eats Aiptasia pest anemones, but many wild-caught fish refuse prepared food at first. Choose one that is already feeding, in a mature tank with live rock. May nip at LPS corals, clam mantles and tube worms.','#f4f1e8','#f08a1c','t','v']
 ];
 var own={},filt='All',qs='',photos={},cur=-1,db=null;
 try{own=JSON.parse(localStorage.getItem('fish-own')||'{}')||{}}catch(e){own={}}
