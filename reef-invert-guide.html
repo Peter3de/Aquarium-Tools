@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Peter Ede">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Browse common reef invertebrates such as snails, shrimp and crabs, check care needs, and add your own photos.">
+<meta name="theme-color" content="#eaf6f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08162b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230b2540'/%3E%3Cg%20stroke='%23ff6fae'%20stroke-width='6'%20stroke-linecap='round'%20fill='none'%3E%3Cpath%20d='M32%2054V30M32%2040L18%2026M32%2036L46%2020M18%2026V16M46%2020V12'/%3E%3C/g%3E%3C/svg%3E">
+<title>Reef Invert Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eaf6f8;--sf:#fff;--tx:#0b2540;--mu:#51708f;--ac:#d6226f;--ln:#c4dce3;--art:#0a1d38;--onac:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#08162b;--sf:#0f2444;--tx:#e6f1ff;--mu:#8fa8c7;--ac:#ff6fae;--ln:#1d3a63;--art:#050f20;--onac:#08162b;color-scheme:dark}}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.5 Figtree,system-ui,sans-serif;min-height:100%}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);padding:14px 16px 10px;border-bottom:1px solid var(--ln)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+h1{font:800 26px/1.1 "Bricolage Grotesque",Figtree,sans-serif;margin:0 0 10px;letter-spacing:-.01em}
+h1 span{color:var(--ac)}
+input[type=search]{width:100%;padding:11px 14px;border-radius:12px;border:1px solid var(--ln);background:var(--sf);color:var(--tx);font:inherit}
+input:focus-visible,button:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}
+.chip{flex:none;border:1px solid var(--ln);background:var(--sf);color:var(--tx);border-radius:99px;padding:6px 14px;font:600 14px Figtree,sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ac);border-color:var(--ac);color:var(--onac)}
+main{max-width:900px;margin:0 auto;padding:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;overflow:hidden;padding:0;text-align:left;color:var(--tx);cursor:pointer;font:inherit;display:block;width:100%}
+.card svg{display:block;width:100%;height:auto;background:var(--art)}
+.card .t{padding:9px 11px 11px}
+.card b{font:600 15px/1.25 "Bricolage Grotesque",Figtree,sans-serif;display:block}
+.card i{font-size:12.5px;color:var(--mu)}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;border:1px solid var(--ln);margin-top:6px;color:var(--mu)}
+.empty{color:var(--mu);text-align:center;padding:40px 0}
+dialog{width:min(560px,100%);max-height:92%;margin:auto auto 0;border:0;border-radius:20px 20px 0 0;padding:0;background:var(--sf);color:var(--tx);overflow:auto}
+@media(min-width:640px){dialog{margin:auto;border-radius:20px}}
+dialog::backdrop{background:rgba(2,10,24,.6)}
+dialog svg{display:block;width:100%;height:auto;background:var(--art)}
+.in{padding:16px 18px 24px}
+.in h2{font:800 24px/1.15 "Bricolage Grotesque",Figtree,sans-serif;margin:0}
+.in .sci{color:var(--mu);font-style:italic;margin:2px 0 12px}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0 0 14px}
+dt{color:var(--mu);font-weight:600}dd{margin:0}
+.tip{border-left:4px solid var(--ac);padding:2px 0 2px 12px;margin:0 0 16px}
+.row{display:flex;gap:10px}
+.btn{flex:1;padding:11px;border-radius:12px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);font:600 15px Figtree,sans-serif;cursor:pointer}
+.btn.p{background:var(--ac);border-color:var(--ac);color:var(--onac)}
+.cph{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--art)}.pho{display:flex;gap:8px;margin:0 0 12px}.pho .btn{padding:8px 10px;font-size:14px}.pho input{display:none}
+.wrap{position:relative}.own{position:absolute;top:8px;right:8px;z-index:1;display:flex;padding:6px;border-radius:10px;border:1px solid var(--ln);background:var(--sf);cursor:pointer}.own input,.ownrow input{width:22px;height:22px;margin:0;accent-color:var(--ac);cursor:pointer}.ownrow{display:flex;gap:10px;align-items:center;margin:0 0 14px;font-weight:600;cursor:pointer}
+.ph p.cn{color:var(--tx);font-size:14px;margin:0 0 12px}.cp{margin:0 0 12px}.cp b{display:block}.cp span{color:var(--mu);font-size:13px}.cp div{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.cp em{font-style:normal;font-size:13px;padding:3px 10px;border-radius:99px;border:1px solid var(--ln)}.cp em.o{border-color:var(--ac);color:var(--ac);font-weight:600}
+[hidden]{display:none!important}.lt{background:var(--sf);border:1px solid var(--ln);border-radius:14px;margin:0 0 14px}.lt summary{padding:12px 14px;cursor:pointer;font-weight:600}.lt summary span{color:var(--ac)}.lb{padding:0 14px 14px;display:grid;gap:10px}.lb label{display:grid;gap:4px;font-weight:600;font-size:14px}.lb select,.lb input[type=number]{padding:9px 10px;border-radius:10px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);font:inherit}.lb input[type=range]{accent-color:var(--ac)}.lb p{margin:0;color:var(--mu);font-size:13px}.lb select:focus-visible,.lb input:focus-visible,.lt summary:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.dm{display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(72px,24vw,150px),1fr));gap:10px}.dm label{min-width:0;font-size:13px}.dm input,.lb select{width:100%;min-width:0;box-sizing:border-box}.dm input[type=number]{-moz-appearance:textfield;appearance:textfield;text-align:center;padding-left:6px;padding-right:6px}.dm input::-webkit-outer-spin-button,.dm input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.lb select{text-overflow:ellipsis}
+#lchart{color:var(--tx)}#lchart svg{width:100%;height:auto;display:block}.ch{font-weight:600;margin:4px 0 6px}.lg{display:grid;gap:4px;font-size:13px;margin-top:8px}.lg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}#lchart p{margin:8px 0 0;color:var(--mu);font-size:13px}
+.lb textarea{width:100%;padding:9px 10px;border-radius:10px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);font:12px/1.4 ui-monospace,monospace;resize:vertical}.lb .row .btn{min-width:0}
+.ph{margin:0 0 16px}.ph h3{font:800 17px "Bricolage Grotesque",Figtree,sans-serif;margin:0 0 6px}.ph .w{overflow-x:auto}.ph table{width:100%;border-collapse:collapse;font-size:14px}.ph th,.ph td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--ln)}.ph th{color:var(--mu);font-weight:600}.ph td:nth-child(2){font-weight:600}.ph p{color:var(--mu);font-size:13px;margin:8px 0 0}
+.vl{margin:2px 0 8px}.vt{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--ln);background:var(--bg);border-radius:99px;padding:2px 3px 2px 12px;margin:0 6px 6px 0;font-size:14px}.vx{border:0;background:none;color:var(--mu);font:600 18px/1 Figtree,sans-serif;cursor:pointer;padding:3px 9px;border-radius:99px}.vnone{color:var(--mu);font-size:13px}
+.vadd{display:flex;gap:8px}.vadd input{flex:1;min-width:0;padding:9px 10px;border-radius:10px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);font:inherit}.vadd .btn{flex:none;padding:9px 18px}.vadd input:focus-visible,.vx:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.vcount{display:block;font-size:12px;color:var(--mu);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+footer{color:var(--mu);font-size:13px;text-align:center;padding:24px 16px 32px}
+@media(prefers-reduced-motion:no-preference){dialog[open]{animation:up .25s ease-out}@keyframes up{from{transform:translateY(24px);opacity:0}}}
+.mu{color:var(--mu);font-size:13px;margin:0 0 8px}.card .t{display:block}.card .t i{display:block;margin:0 0 6px}.card .pill{margin-right:4px}.wrap .own+.card img.cph{aspect-ratio:4/3}dialog .cph{aspect-ratio:4/3}
+</style>
+</head>
+<body>
+<header>
+<a href="index.html" style="display:inline-block;margin:0 0 4px;font-size:13px;font-weight:600;color:var(--ac);text-decoration:none">← Reef Tools home</a>
+<a href="how-to-use.html" style="display:inline-block;margin:0 0 4px 14px;font-size:13px;font-weight:600;color:var(--ac);text-decoration:none">How to use</a>
+<h1>Reef <span>Invert</span> Guide</h1>
+<input id="q" type="search" placeholder="Search inverts" aria-label="Search inverts">
+<div class="chips" id="chips" role="group" aria-label="Filter"></div><a class="chip" href="reef-water-tracker.html#mixed" style="display:inline-block;margin-top:8px;text-decoration:none;color:var(--ac);border-color:var(--ac)">Reef Water Tracker →</a>
+</header>
+<main><div class="grid" id="grid"></div><p class="empty" id="empty" hidden>No inverts match your search.</p>
+<details class="lt"><summary>My saved data</summary><div class="lb"><p class="mu">Your owned inverts and photos stay in this browser. Copy a backup of your owned list to keep it safe. Photos are not part of the backup.</p><textarea id="bt" rows="3" aria-label="Backup text" placeholder="Paste a backup here, then select Restore backup."></textarea><div class="row"><button class="btn" id="bc" type="button">Copy backup</button><button class="btn" id="br" type="button">Restore backup</button></div><p class="mu" id="bm" role="status"></p></div></details></main>
+<footer>Illustrations are stylised placeholders, not photographs. Add your own photo to any invert from its details; photos stay in this browser. Sizes and tank minimums are general guidance. Invertebrates are sensitive to copper-based fish medications and to sudden changes in salinity, temperature and water chemistry, so acclimate them slowly by drip. Research each species before you buy.<br>© 2026 Peter Ede</footer>
+<dialog id="dlg"></dialog>
+<script>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var G=['Snails','Shrimp','Crabs & hermits','Urchins & starfish','Clams & worms'];
+// name, scientific, group, adult cm, minimum tank L, care, diet, temperament, reef safe, note, colour 1, colour 2, shape (r round, t tall, l long), pattern (v bands, h stripe, b rear half, d spots, n none)
+var F=[
+['Nerite snail','Nerita spp.',0,2.5,40,'Easy','Algae grazer: film algae, diatoms, hair algae','Peaceful','Yes','A tireless algae grazer. It lays small white egg capsules that do not hatch in aquariums. It can climb out of the tank, so keep a lid on.','#6b4f2a','#d9c7a0','n','n'],
+['Trochus snail','Tectus and Trochus spp.',0,3,75,'Easy','Algae grazer: film and hair algae, diatoms','Peaceful','Yes','Good at hair and film algae. It can struggle to right itself if it lands on its back, so help it over.','#d8c6a5','#a5372b','n','n'],
+['Turbo snail','Turbo fluctuosa',0,6,150,'Easy','Algae grazer: hair and film algae, some macroalgae','Peaceful','Yes','A strong grazer that can knock over loose frags and small rocks. Keep frags well secured.','#4f6b3a','#bcd08a','n','n'],
+['Cerith snail','Cerithium spp.',0,2.5,40,'Easy','Algae grazer and sand sifter: film algae, detritus','Peaceful','Yes','Stirs the sand surface as it grazes and cleans up uneaten food. Good for nano tanks.','#8c6a3f','#d9bf8a','n','n'],
+['Nassarius snail','Nassarius spp.',0,2.5,75,'Easy','Scavenger: uneaten food and dead animals','Peaceful','Yes','Buries itself in the sand and pops up when food hits the water. Does best with a deeper sand bed.','#b0a38a','#6b5a3d','n','n'],
+['Peppermint shrimp','Lysmata wurdemanni',1,5,75,'Easy','Scavenger; often eats Aiptasia pest anemones','Peaceful','Yes','Known for eating Aiptasia, though not every one will. Several look-alike species are sold under this name and some do not eat Aiptasia. Large fish may eat it.','#e8b0b4','#c8323f','p','h'],
+['Skunk cleaner shrimp','Lysmata amboinensis',1,5,75,'Easy','Omnivore: cleans parasites from fish; scavenges','Peaceful','Yes','Sets up a cleaning station and picks parasites from fish. Needs hiding places and is sensitive to copper and sudden salinity changes.','#e8472b','#ffffff','p','h'],
+['Fire shrimp','Lysmata debelius',1,6,75,'Moderate','Scavenger: meaty foods, mysis, brine shrimp','Peaceful but shy','Yes','Hides a lot, especially after moulting. Needs caves and is sensitive to copper.','#c8142a','#ffffff','p','n'],
+['Randall’s pistol shrimp','Alpheus randalli',1,5,75,'Moderate','Carnivore: frozen mysis, brine shrimp, meaty foods','Peaceful; can snap at tank mates that come too close','Yes','Often lives with a shrimp goby, which stands watch at the burrow. It digs, so stack rock on the tank floor rather than on the sand.','#c28a4a','#f4e3c4','p','v'],
+['Coral banded shrimp','Stenopus hispidus',1,8,150,'Moderate','Omnivore: meaty foods; scavenges and cleans fish','Aggressive toward other shrimp','With caution','Keep one, or a mated pair. It may attack other shrimp and small fish, and sometimes picks at corals.','#c8232c','#ffffff','p','v'],
+['Blue-legged hermit crab','Clibanarius tricolor',2,2.5,40,'Easy','Algae and detritus grazer','Peaceful, but may kill snails for their shells','Yes','Provide spare empty shells. It may take a snail’s shell if it is short of one.','#2b7cd1','#e8a13a','h','n'],
+['Scarlet reef hermit crab','Paguristes cadenati',2,3,40,'Easy','Algae grazer: hair algae and detritus','Peaceful, but may kill snails for their shells','Yes','Red legs and a white-banded claw. Provide spare empty shells.','#d6302a','#f4ece0','h','n'],
+['Emerald crab','Mithraculus sculptus',2,5,110,'Moderate','Algae grazer: bubble algae, hair algae; fed meaty foods too','Peaceful, but may turn aggressive when hungry','With caution','Eats bubble algae. May catch small fish or nip at corals if underfed, so feed it.','#2f9b57','#9fe0b0','c','n'],
+['Porcelain anemone crab','Neopetrolisthes maculatus',2,2.5,75,'Moderate','Filter feeder: fine foods and plankton','Peaceful','Yes','Lives in a host anemone, often as a pair. Feed it fine particles; it catches food with fan-like mouthparts.','#f0e6d8','#d9382a','c','d'],
+['Tuxedo urchin','Mespilia globulus',3,6,150,'Moderate','Algae grazer: hair and film algae, coralline algae','Peaceful','With caution','Covers itself with bits of rock and shell. May knock over loose frags. Needs a mature tank with plenty of algae, and slow acclimation.','#7a1f2a','#f2d9c0','u','d'],
+['Sand sifting sea star','Archaster typicus',3,10,300,'Advanced','Detritus and tiny animals in the sand','Peaceful','Yes','Starves in smaller or young tanks because it eats the sand bed’s microfauna. Only for a large, mature tank with deep sand.','#c9a36a','#8a5a2a','x','n'],
+['Maxima clam','Tridacna maxima',4,20,200,'Moderate','Photosynthesis, plus fine particulate foods','Peaceful','Yes','Needs strong light and stable calcium, alkalinity and magnesium, since it uses them to grow its shell. Some angelfish and wrasses nip at its mantle.','#2f8de0','#9fdcff','m','d'],
+['Feather duster worm','Sabellastarte spp.',4,15,75,'Easy','Filter feeder: fine particles and plankton','Peaceful','Yes','Builds a tube in the rock or sand and spreads a crown of feathers. It pulls in quickly when startled, and fish may pick at it.','#a8325e','#f2c94c','w','n']
+];
+var own={},filt='All',qs='',photos={},cur=-1,db=null;
+try{own=JSON.parse(localStorage.getItem('inv-own')||'{}')||{}}catch(e){own={}}
+function saveOwn(){try{localStorage.setItem('inv-own',JSON.stringify(own))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function spiral(cx,cy,R,c,w){var d='',n=70,k,t,a;for(k=0;k<=n;k++){t=k/n;a=t*3*6.2832;d+=(k?'L':'M')+(cx+R*t*Math.cos(a)).toFixed(1)+','+(cy+R*t*Math.sin(a)).toFixed(1)}return '<path d="'+d+'" fill="none" stroke="'+c+'" stroke-width="'+w+'" stroke-linecap="round" stroke-linejoin="round"/>'}
+function art(f,i){var c1=f[10],c2=f[11],sh=f[12],pt=f[13],k,a,s='<svg viewBox="0 0 200 150" role="img" aria-label="Stylised '+esc(f[0])+'">';
+ if(sh==='n'){s+='<ellipse cx="102" cy="112" rx="62" ry="11" fill="'+c2+'"/><circle cx="148" cy="100" r="10" fill="'+c2+'"/><path d="M148,92 L156,70 M153,95 L168,78" stroke="'+c2+'" stroke-width="3" stroke-linecap="round"/><circle cx="86" cy="78" r="40" fill="'+c1+'"/>'+spiral(86,78,34,c2,3.5)}
+ else if(sh==='p'){var bd='M156,52 Q176,92 126,104 Q76,112 44,84';
+  s+='<path d="M46,84 L26,66 M46,84 L24,92 M46,84 L34,106" stroke="'+c1+'" stroke-width="7" stroke-linecap="round" fill="none"/><path d="'+bd+'" fill="none" stroke="'+c1+'" stroke-width="24" stroke-linecap="round"/>';
+  if(pt==='v')s+='<path d="'+bd+'" fill="none" stroke="'+c2+'" stroke-width="24" stroke-dasharray="9 17"/>';
+  if(pt==='h')s+='<path d="M150,44 Q168,82 122,94 Q76,102 48,78" fill="none" stroke="'+c2+'" stroke-width="4" stroke-linecap="round"/>';
+  s+='<path d="M162,44 Q178,20 196,26 M164,50 Q184,34 198,46" fill="none" stroke="'+c1+'" stroke-width="2.5" stroke-linecap="round"/><circle cx="164" cy="58" r="4" fill="#111"/>'}
+ else if(sh==='c'){s+='<path d="M64,96 L36,108 M66,104 L42,126 M72,110 L54,134 M136,96 L164,108 M134,104 L158,126 M128,110 L146,134 M70,78 L44,56 M130,78 L156,56" stroke="'+c2+'" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="42" cy="50" r="12" fill="'+c2+'"/><circle cx="158" cy="50" r="12" fill="'+c2+'"/><ellipse cx="100" cy="92" rx="46" ry="32" fill="'+c1+'"/>';
+  if(pt==='d')s+='<circle cx="84" cy="86" r="5" fill="'+c2+'"/><circle cx="114" cy="98" r="5" fill="'+c2+'"/><circle cx="98" cy="108" r="4" fill="'+c2+'"/>';
+  s+='<circle cx="88" cy="66" r="4" fill="#fff"/><circle cx="112" cy="66" r="4" fill="#fff"/>'}
+ else if(sh==='h'){s+='<path d="M112,106 L152,112 M116,114 L146,130 M120,98 L158,92" stroke="'+c2+'" stroke-width="6" stroke-linecap="round" fill="none"/><circle cx="162" cy="92" r="11" fill="'+c2+'"/><path d="M118,84 L134,60" stroke="'+c2+'" stroke-width="3" stroke-linecap="round"/><circle cx="135" cy="58" r="4" fill="#fff"/><circle cx="84" cy="82" r="38" fill="'+c1+'"/>'+spiral(84,82,32,c2,3.5)}
+ else if(sh==='u'){for(k=0;k<28;k++){a=k*6.2832/28;s+='<line x1="'+(100+26*Math.cos(a)).toFixed(1)+'" y1="'+(80+26*Math.sin(a)).toFixed(1)+'" x2="'+(100+52*Math.cos(a)).toFixed(1)+'" y2="'+(80+52*Math.sin(a)).toFixed(1)+'" stroke="'+c2+'" stroke-width="3" stroke-linecap="round"/>'}
+  s+='<circle cx="100" cy="80" r="30" fill="'+c1+'"/>';
+  if(pt==='d')for(k=0;k<6;k++){a=k*1.0472;s+='<circle cx="'+(100+16*Math.cos(a)).toFixed(1)+'" cy="'+(80+16*Math.sin(a)).toFixed(1)+'" r="3.5" fill="'+c2+'"/>'}}
+ else if(sh==='x'){var p='';for(k=0;k<10;k++){a=-1.5708+k*0.6283;var r=k%2?20:56;p+=(k?'L':'M')+(100+r*Math.cos(a)).toFixed(1)+','+(78+r*Math.sin(a)).toFixed(1)}
+  s+='<path d="'+p+'Z" fill="'+c1+'" stroke="'+c1+'" stroke-width="8" stroke-linejoin="round"/><circle cx="100" cy="78" r="7" fill="'+c2+'"/>';
+  for(k=0;k<5;k++){a=-1.5708+k*1.2566;s+='<circle cx="'+(100+34*Math.cos(a)).toFixed(1)+'" cy="'+(78+34*Math.sin(a)).toFixed(1)+'" r="3" fill="'+c2+'"/>'}}
+ else if(sh==='m'){s+='<path d="M28,96 Q100,148 172,96 Q100,64 28,96Z" fill="'+c2+'"/><ellipse cx="100" cy="92" rx="66" ry="22" fill="'+c1+'"/>';
+  if(pt==='d')[58,82,106,130,150].forEach(function(x){s+='<circle cx="'+x+'" cy="92" r="4" fill="'+c2+'"/>'})}
+ else{s+='<rect x="92" y="96" width="16" height="44" rx="6" fill="'+c2+'"/>';for(k=0;k<9;k++)s+='<ellipse cx="100" cy="62" rx="6" ry="42" fill="'+c1+'" opacity=".85" transform="rotate('+(-70+k*17.5)+' 100 98)"/>'}
+ return s+'</svg>'}
+function match(f,i){var g=G[f[2]];
+ if(filt==='Owned'&&!own[f[0]])return false;
+ if(filt!=='All'&&filt!=='Owned'&&g!==filt)return false;
+ if(qs&&(f[0]+' '+f[1]+' '+g).toLowerCase().indexOf(qs)<0)return false;return true}
+function card(f,i){var ph=(photos[f[0]]||[])[0];
+ return '<div class="wrap"><label class="own" title="I own this invert"><input type="checkbox" data-o="'+i+'" aria-label="I own '+esc(f[0])+'"'+(own[f[0]]?' checked':'')+'></label><button class="card" data-i="'+i+'" type="button">'+(ph?'<img class="cph" src="'+ph.d+'" alt="'+esc(f[0])+'">':art(f,i))+'<span class="t"><b>'+esc(f[0])+'</b><i>'+esc(f[1])+'</i><span class="pill">'+f[5]+'</span> <span class="pill">'+f[4]+' L minimum</span></span></button></div>'}
+function chips(){var n=Object.keys(own).filter(function(k){return own[k]}).length;
+ $('chips').innerHTML=['All','Owned'].concat(G).map(function(c){return '<button class="chip" type="button" data-c="'+esc(c)+'" aria-pressed="'+(c===filt)+'">'+esc(c)+(c==='Owned'?' ('+n+')':'')+'</button>'}).join('')}
+function render(){var out=[];F.forEach(function(f,i){if(match(f,i))out.push(card(f,i))});
+ $('grid').innerHTML=out.join('');$('empty').hidden=out.length>0;chips()}
+function row(k,v){return '<dt>'+k+'</dt><dd>'+esc(v)+'</dd>'}
+function open(i){cur=i;var f=F[i],ps=photos[f[0]]||[];
+ var im=ps.length?ps.map(function(p,k){return '<img class="cph" src="'+p.d+'" alt="'+esc(f[0])+' photo '+(k+1)+'"><div class="pho" style="margin-top:8px;padding:0 18px"><button class="btn" type="button" data-rm="'+p.id+'">Remove photo '+(k+1)+'</button></div>'}).join(''):art(f,i);
+ $('dlg').innerHTML=im+'<div class="in"><h2>'+esc(f[0])+'</h2><p class="sci">'+esc(f[1])+'</p>'
+ +'<label class="ownrow"><input type="checkbox" id="od"'+(own[f[0]]?' checked':'')+'> <span>I own this invert</span></label>'
+ +(ps.length<4?'<div class="pho"><label class="btn" style="text-align:center;cursor:pointer">'+(ps.length?'Add another photo':'Add my photo')+'<input type="file" accept="image/*" id="pf"></label></div><p class="mu" id="pm" role="status"></p>':'<p class="mu">You have added the maximum of four photos. Remove one to add another.</p>')
+ +'<p class="tip">'+esc(f[9])+'</p><dl>'+row('Group',G[f[2]])+row('Adult size',f[3]+' cm')+row('Minimum tank',f[4]+' L')+row('Care level',f[5])+row('Diet or role',f[6])+row('Temperament',f[7])+row('Reef safe',f[8])+'</dl>'
+ +'<div class="ph"><h3>Water</h3><div class="w"><table><tr><th>Parameter</th><th>Typical range</th></tr><tr><td>Temperature</td><td>24–26 °C</td></tr><tr><td>Salinity</td><td>34–35 ppt (1.025–1.026 SG)</td></tr><tr><td>pH</td><td>8.1–8.4</td></tr><tr><td>Ammonia and nitrite</td><td>0 ppm</td></tr><tr><td>Nitrate</td><td>Under 20 ppm</td></tr><tr><td>Calcium</td><td>420–450 ppm</td></tr><tr><td>Alkalinity</td><td>7–11 dKH</td></tr><tr><td>Magnesium</td><td>1300–1400 ppm</td></tr><tr><td>Copper</td><td>None. Keep copper medications out of the tank.</td></tr></table></div></div>'
+ +'<div class="row"><a class="btn" style="text-align:center;text-decoration:none" href="reef-water-tracker.html#mixed">Check my water</a><button class="btn p" type="button" id="cl">Close</button></div></div>';
+ if(!$('dlg').open)$('dlg').showModal()}
+function shrink(file){return new Promise(function(res,rej){var im=new Image(),u=URL.createObjectURL(file);im.onload=function(){var k=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.82))};im.onerror=function(){URL.revokeObjectURL(u);rej()};im.src=u})}
+function dbOpen(){return new Promise(function(r){try{var rq=indexedDB.open('reef-inverts',1);rq.onupgradeneeded=function(){rq.result.createObjectStore('p',{keyPath:'id'})};rq.onsuccess=function(){db=rq.result;r()};rq.onerror=function(){r()}}catch(e){r()}})}
+function dbAll(){return new Promise(function(r){if(!db)return r([]);try{var q=db.transaction('p').objectStore('p').getAll();q.onsuccess=function(){r(q.result||[])};q.onerror=function(){r([])}}catch(e){r([])}})}
+function dbDo(fn){return new Promise(function(r){if(!db)return r(false);try{var tx=db.transaction('p','readwrite');fn(tx.objectStore('p'));tx.oncomplete=function(){r(true)};tx.onerror=tx.onabort=function(){r(false)}}catch(e){r(false)}})}
+function load(){return dbAll().then(function(all){photos={};all.sort(function(a,b){return a.t-b.t}).forEach(function(p){(photos[p.fish]=photos[p.fish]||[]).push(p)})})}
+$('chips').onclick=function(e){var c=e.target.getAttribute&&e.target.getAttribute('data-c');if(c){filt=c;render()}};
+$('q').oninput=function(){qs=this.value.trim().toLowerCase();render()};
+$('grid').addEventListener('change',function(e){var i=e.target.getAttribute('data-o');if(i!==null){own[F[i][0]]=e.target.checked?1:0;saveOwn();chips();if(filt==='Owned')render()}});
+$('grid').addEventListener('click',function(e){if(e.target.closest('.own'))return;var c=e.target.closest('.card');if(c)open(+c.getAttribute('data-i'))});
+$('dlg').addEventListener('click',function(e){var t=e.target;
+ if(t===$('dlg')||t.id==='cl')$('dlg').close();
+ var rm=t.getAttribute&&t.getAttribute('data-rm');
+ if(rm)dbDo(function(s){s.delete(rm)}).then(load).then(function(){open(cur);render()})});
+$('dlg').addEventListener('change',function(e){var t=e.target;
+ if(t.id==='od'){own[F[cur][0]]=t.checked?1:0;saveOwn();render()}
+ if(t.id==='pf'&&t.files[0]){var m=$('pm');m.textContent='Saving photo…';
+  shrink(t.files[0]).then(function(d){return dbDo(function(s){s.put({id:Date.now()+'-'+Math.random().toString(36).slice(2,7),fish:F[cur][0],t:Date.now(),d:d})})}).then(function(ok){if(!ok)throw 0;return load()}).then(function(){open(cur);render()}).catch(function(){var m2=$('pm');if(m2)m2.textContent='Couldn’t save that photo. Try a different image.'})}});
+$('bc').onclick=function(){var t=JSON.stringify({app:'reef-invert-guide',version:1,owned:Object.keys(own).filter(function(k){return own[k]})});$('bt').value=t;$('bt').select();
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){$('bm').textContent='Backup copied.'},function(){$('bm').textContent='Copy the text in the box and keep it somewhere safe.'});else $('bm').textContent='Copy the text in the box and keep it somewhere safe.'};
+$('br').onclick=function(){var o;try{o=JSON.parse($('bt').value)}catch(e){$('bm').textContent='That is not a Reef Invert Guide backup.';return}
+ var names=F.map(function(f){return f[0]}),a=o&&Array.isArray(o.owned)?o.owned.filter(function(n){return names.indexOf(n)>=0}):null;
+ if(!a){$('bm').textContent='No owned inverts were found in that backup.';return}
+ a.forEach(function(n){own[n]=1});saveOwn();render();$('bm').textContent='Restored '+a.length+(a.length===1?' invert.':' inverts.')};
+render();dbOpen().then(load).then(render);
+})();
+</script>
+</body>
+</html>
